@@ -34,3 +34,39 @@ C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceTime.GUI\obj\x86\
 C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI.exe
 C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI.pdb
 C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI_MarkupCompile.lref
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\RaceTime.GUI.exe
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\RaceTime.GUI.pdb
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\Microsoft.Practices.Prism.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\Microsoft.Practices.Prism.Interactivity.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\Microsoft.Practices.Prism.UnityExtensions.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\NSubstitute.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\PrismMVVMLibrary.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\RaceTime.Library.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\WPFToolkit.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\RaceTime.Library.pdb
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\Microsoft.Practices.Prism.xml
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\Microsoft.Practices.Prism.Interactivity.xml
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\Microsoft.Practices.Prism.UnityExtensions.xml
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\Microsoft.Practices.Unity.xml
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\bin\Debug\NSubstitute.xml
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI.csprojResolveAssemblyReference.cache
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\MainWindow.g.cs
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\App.g.cs
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI_MarkupCompile.cache
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI_MarkupCompile.lref
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\MainWindow.baml
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI.g.resources
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI.Properties.Resources.resources
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI.csproj.GenerateResource.Cache
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI.exe
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI.pdb

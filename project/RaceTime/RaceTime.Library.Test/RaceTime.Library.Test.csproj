@@ -38,6 +38,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +49,8 @@
   <ItemGroup>
     <Compile Include="Application\ApplicationAcceptanceTest.cs" />
     <Compile Include="Application\can_create_the_application.cs" />
+    <Compile Include="LiveRCAcceptanceTest.cs" />
+    <Compile Include="LiveRCInteractor.cs" />
     <Compile Include="RaceClock\can_reset_the_race_clock.cs" />
     <Compile Include="RaceClock\can_start_and_stop_the_race_clock.cs" />
     <Compile Include="Configuration\can_save_and_load_configuration.cs" />
@@ -59,6 +62,7 @@
     <Compile Include="RaceClock\it_keeps_counting_until_finished.cs" />
     <Compile Include="RaceClock\RaceClockAcceptanceTest.cs" />
     <Compile Include="RaceClock\about_race_clock_events.cs" />
+    <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RaceTime.Library\RaceTime.Library.csproj">

@@ -5,3 +5,10 @@ C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceTime.Library.Test
 C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceTime.Library.Test\obj\Debug\RaceTime.Library.Test.csprojResolveAssemblyReference.cache
 C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceTime.Library.Test\obj\Debug\RaceTime.Library.Test.dll
 C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceTime.Library.Test\obj\Debug\RaceTime.Library.Test.pdb
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.Library.Test\bin\Debug\RaceTime.Library.Test.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.Library.Test\bin\Debug\RaceTime.Library.Test.pdb
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.Library.Test\bin\Debug\RaceTime.Library.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.Library.Test\bin\Debug\RaceTime.Library.pdb
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.Library.Test\obj\Debug\RaceTime.Library.Test.csprojResolveAssemblyReference.cache
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.Library.Test\obj\Debug\RaceTime.Library.Test.dll
+C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceTime.Library.Test\obj\Debug\RaceTime.Library.Test.pdb
