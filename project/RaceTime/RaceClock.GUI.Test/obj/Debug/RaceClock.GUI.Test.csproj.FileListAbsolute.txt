@@ -1,0 +1,11 @@
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceClock.GUI.Test\bin\Debug\RaceClock.GUI.Test.dll
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceClock.GUI.Test\bin\Debug\RaceClock.GUI.Test.pdb
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceClock.GUI.Test\bin\Debug\RaceTime.GUI.exe
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceClock.GUI.Test\bin\Debug\RaceTime.Library.dll
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceClock.GUI.Test\bin\Debug\RaceTime.GUI.pdb
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceClock.GUI.Test\bin\Debug\RaceTime.Library.pdb
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceClock.GUI.Test\obj\Debug\RaceClock.GUI.Test.csprojResolveAssemblyReference.cache
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceClock.GUI.Test\obj\Debug\RaceClock.GUI.Test.dll
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceClock.GUI.Test\obj\Debug\RaceClock.GUI.Test.pdb
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceClock.GUI.Test\bin\Debug\Microsoft.Practices.Prism.dll
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceClock.GUI.Test\bin\Debug\Microsoft.Practices.Prism.xml

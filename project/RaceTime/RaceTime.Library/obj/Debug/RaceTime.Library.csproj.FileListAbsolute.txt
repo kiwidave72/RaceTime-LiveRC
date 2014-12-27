@@ -1,0 +1,5 @@
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceTime.Library\bin\Debug\RaceTime.Library.dll
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceTime.Library\bin\Debug\RaceTime.Library.pdb
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceTime.Library\obj\Debug\RaceTime.Library.dll
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceTime.Library\obj\Debug\RaceTime.Library.pdb
+C:\Users\Dave\Documents\Git Work\RaceTime\project\RaceTime\RaceTime.Library\obj\Debug\RaceTime.Library.csprojResolveAssemblyReference.cache
