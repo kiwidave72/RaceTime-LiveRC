@@ -43,6 +43,7 @@
     <Compile Include="Model\Application\Application.cs" />
     <Compile Include="Controller\RaceClock.cs" />
     <Compile Include="Model\Practice\PracticeClass.cs" />
+    <Compile Include="Model\Schedule\Schedule.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Storage\ApplicationStorage.cs" />
     <Compile Include="Model\Configuration\Configuration.cs" />

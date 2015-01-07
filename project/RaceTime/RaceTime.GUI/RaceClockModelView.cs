@@ -32,7 +32,7 @@ namespace RaceTime.GUI
 
         public RaceClockModelView()
         {
-            _model.SetRaceTime(1000 * 60 * 5);
+            _model.SetRaceTime(1000 * 60 * 1);
             _startRaceCommand = new DelegateCommand(StartRace);
             _model.OnStarted += new EventHandler(_model_OnStarted);
             _model.OnStopped += new EventHandler(_model_OnStopped);

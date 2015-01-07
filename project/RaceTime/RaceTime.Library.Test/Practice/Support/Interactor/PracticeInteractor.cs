@@ -17,17 +17,17 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
 
         public static void AddSchedule(PracticeClass practice)
         {
-            _meeting.AddToSchedule(practice);
+            _meeting.Schedule.Add(practice);
         }
 
         public static List<PracticeClass> All()
         {
-            return _meeting.FetchAllSchedule();
+            return _meeting.Schedule.Fetch();
         }
 
         public static void RunSchedule()
         {
-            _meeting.RunSchedule();
+            _meeting.Schedule.Run();
         }
     }
 }
