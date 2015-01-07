@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using RaceTime.Library.Model.Practice;
 
 namespace RaceTime.Library.Test.Practice.Support.Interactor
 {
@@ -14,12 +15,12 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
             _meeting.Title = title;
         }
 
-        public static void AddSchedule(long time)
+        public static void AddSchedule(PracticeClass practice)
         {
-            _meeting.AddToSchedule(time);
+            _meeting.AddToSchedule(practice);
         }
 
-        public static List<long> All()
+        public static List<PracticeClass> All()
         {
             return _meeting.FetchAllSchedule();
         }

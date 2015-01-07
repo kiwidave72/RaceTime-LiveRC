@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using RaceTime.Library.Test.Practice.Support.Interactor;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RaceTime.Library.Model.Practice;
 
 namespace RaceTime.Library.Test.Practice.Support
 {
@@ -15,9 +16,9 @@ namespace RaceTime.Library.Test.Practice.Support
             PracticeInteractor.SetTitle(test);
         }
 
-        public void Can_add_to_the_practice_schedule(long time)
+        public void Can_add_to_the_practice_schedule(PracticeClass practice)
         {
-            PracticeInteractor.AddSchedule(time);
+            PracticeInteractor.AddSchedule(practice);
         }
 
         public void Then_I_have_this_many(int expected)

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Linq;
+using RaceTime.Library.Model.Practice;
 
 
 namespace RaceTime.Library.Model.Meeting
@@ -12,9 +13,11 @@ namespace RaceTime.Library.Model.Meeting
     {
         private MeetingClasses _classes = new MeetingClasses();
 
-        private List<long> _schedule = new List<long>();
+        private List<PracticeClass> _schedule = new List<PracticeClass>();
 
-        Controller.RaceClock _clock = new Controller.RaceClock();
+        private Controller.RaceClock _clock = new Controller.RaceClock();
+
+        private PracticeClass _currentPracticeClass;
 
         private String _title;
 
@@ -34,23 +37,24 @@ namespace RaceTime.Library.Model.Meeting
             set { _title = value; }
         }
 
-        public void AddToSchedule(long time)
+        public void AddToSchedule(PracticeClass practice)
         {
-            _schedule.Add(time);
+            _schedule.Add(practice);
         }
 
-        public List<long> FetchAllSchedule()
+        public List<PracticeClass> FetchAllSchedule()
         {
             return _schedule;
         }
 
+        
         public void RunSchedule()
         {
-            var time = _schedule.First();
+            _currentPracticeClass = _schedule.FirstOrDefault(i => i.Status == "Ready");
 
-            _schedule.Remove(time);
+            _currentPracticeClass.Status = "Running";
 
-            Clock.SetRaceTime(time);
+            Clock.SetRaceTime(_currentPracticeClass.Time);
 
             Clock.Start();
 
@@ -61,6 +65,8 @@ namespace RaceTime.Library.Model.Meeting
         void Clock_OnElapsedHasExpired(object sender, EventArgs e)
         {
             Clock.Stop();
+
+            _currentPracticeClass.Status = "Finished";
 
             RunSchedule();
 

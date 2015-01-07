@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RaceTime.Library.Test.Practice.Support;
+using RaceTime.Library.Model.Practice;
 
 namespace RaceTime.Library.Test.Practice
 {
@@ -12,7 +13,7 @@ namespace RaceTime.Library.Test.Practice
         {
            Given_a_meeting_called("test");
 
-           Can_add_to_the_practice_schedule(300);
+           Can_add_to_the_practice_schedule(new PracticeClass("",300));
 
            Then_I_have_this_many(1);
 
