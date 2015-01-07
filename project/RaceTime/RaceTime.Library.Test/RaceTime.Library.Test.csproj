@@ -54,7 +54,7 @@
     <Compile Include="Practice\Support\Interactor\PracticeInteractor.cs" />
     <Compile Include="Practice\Support\PracticeAcceptanceTest.cs" />
     <Compile Include="Practice\About_practice_schedule.cs" />
-    <Compile Include="Practice\UnitTest1.cs" />
+    <Compile Include="Practice\About_running_practice_with_raceclock.cs" />
     <Compile Include="RaceClock\can_reset_the_race_clock.cs" />
     <Compile Include="RaceClock\can_start_and_stop_the_race_clock.cs" />
     <Compile Include="Configuration\can_save_and_load_configuration.cs" />

@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using RaceTime.Library.Test.Practice.Support;
+using System.Threading;
 
 
 namespace RaceTime.Library.Test.Practice
@@ -16,7 +17,12 @@ namespace RaceTime.Library.Test.Practice
 
             Can_add_to_the_practice_schedule(300);
 
+            Can_add_to_the_practice_schedule(300);
+                        
             Given_the_schedule_run_with_raceclock();
+            
+            Thread.Sleep(700);
+
 
 
         }

@@ -14,7 +14,14 @@ namespace RaceTime.Library.Model.Meeting
 
         private List<long> _schedule = new List<long>();
 
+        Controller.RaceClock _clock = new Controller.RaceClock();
+
         private String _title;
+
+        public Controller.RaceClock Clock
+        {
+            get { return _clock; }
+        }
 
         public MeetingClasses Classes
         {
@@ -41,11 +48,21 @@ namespace RaceTime.Library.Model.Meeting
         {
             var time = _schedule.First();
 
-            Controller.RaceClock clock = new Controller.RaceClock();
+            _schedule.Remove(time);
 
-            clock.SetRaceTime(time);
+            Clock.SetRaceTime(time);
 
-            clock.Start();
+            Clock.Start();
+
+            Clock.OnElapsedHasExpired += Clock_OnElapsedHasExpired;
+
+        }
+
+        void Clock_OnElapsedHasExpired(object sender, EventArgs e)
+        {
+            Clock.Stop();
+
+            RunSchedule();
 
         }
     }
