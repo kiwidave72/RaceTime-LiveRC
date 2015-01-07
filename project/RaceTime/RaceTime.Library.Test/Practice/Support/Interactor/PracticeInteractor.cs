@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using RaceTime.Library.Controller.Scoreboard;
 using RaceTime.Library.Model.Practice;
 
 namespace RaceTime.Library.Test.Practice.Support.Interactor
@@ -25,8 +23,21 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
             return _meeting.Schedule.Fetch();
         }
 
-        public static void RunSchedule()
+
+        public static PracticeClass CurrentPractice()
         {
+            return _meeting.Schedule.CurrentPracticeClass;
+        }
+
+        public static PracticeClass NextPractice()
+        {
+            return _meeting.Schedule.NextPracticeClass;
+        }
+
+
+        public static void RunSchedule(IScoreboard _scoreboard)
+        {
+            _meeting.Schedule.Scoreboard = _scoreboard;
             _meeting.Schedule.Run();
         }
     }

@@ -54,7 +54,7 @@
     <Compile Include="Practice\Support\Interactor\PracticeInteractor.cs" />
     <Compile Include="Practice\Support\PracticeAcceptanceTest.cs" />
     <Compile Include="Practice\About_practice_schedule.cs" />
-    <Compile Include="Practice\About_running_practice_with_raceclock.cs" />
+    <Compile Include="Practice\About_running_practice_with_schedule.cs" />
     <Compile Include="RaceClock\can_reset_the_race_clock.cs" />
     <Compile Include="RaceClock\can_start_and_stop_the_race_clock.cs" />
     <Compile Include="Configuration\can_save_and_load_configuration.cs" />
@@ -67,6 +67,9 @@
     <Compile Include="RaceClock\RaceClockAcceptanceTest.cs" />
     <Compile Include="RaceClock\about_race_clock_events.cs" />
     <Compile Include="LiveRC\About_using_liveRC.cs" />
+    <Compile Include="Scoreboard\About_scoreboard.cs" />
+    <Compile Include="Scoreboard\Support\Interactor\DebugScoreboard.cs" />
+    <Compile Include="Scoreboard\Support\Scoreboard_AcceptanceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RaceTime.Library\RaceTime.Library.csproj">

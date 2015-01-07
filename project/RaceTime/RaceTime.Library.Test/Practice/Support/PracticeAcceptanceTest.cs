@@ -29,7 +29,18 @@ namespace RaceTime.Library.Test.Practice.Support
 
         public void Given_the_schedule_run_with_raceclock()
         {
-            PracticeInteractor.RunSchedule();
+            PracticeInteractor.RunSchedule(null);
         }
+
+        public void Then_current_practice_is(string name)
+        {
+            Assert.IsTrue(PracticeInteractor.CurrentPractice().Name == name);
+        }
+
+        public void Then_next_practice_is(string name)
+        {
+            Assert.IsTrue(PracticeInteractor.NextPractice().Name == name);
+        }
+
     }
 }

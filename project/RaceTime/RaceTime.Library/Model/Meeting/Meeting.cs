@@ -14,7 +14,7 @@ namespace RaceTime.Library.Model.Meeting
     {
         private MeetingClasses _classes = new MeetingClasses();
 
-        private DefualtSchedule _schedule = new DefualtSchedule();
+        private DefaultSchedule _schedule = new DefaultSchedule();
 
         private String _title;
         
@@ -29,7 +29,7 @@ namespace RaceTime.Library.Model.Meeting
             get { return _classes; }
         }
 
-        public DefualtSchedule Schedule
+        public DefaultSchedule Schedule
         {
             get { return _schedule; }
         }
