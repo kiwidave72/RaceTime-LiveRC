@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net.WebRequestMethods;
+using System.Net;
 using System.Runtime.Serialization.Json;
 
-namespace RaceTime.Library.Test
+namespace RaceTime.Library.Test.LiveRC.Support.Interactor
 {
     public class LiveRCInteractor
     {

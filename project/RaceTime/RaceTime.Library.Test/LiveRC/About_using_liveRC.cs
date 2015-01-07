@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RaceTime.Library.Test.LiveRC.Support;
 
-namespace RaceTime.Library.Test
+namespace RaceTime.Library.Test.LiveRC
 {
     [TestClass]
     public class About_using_liveRC : LiveRCAcceptanceTest

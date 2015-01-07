@@ -5,8 +5,9 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using RaceTime.Library.Test.LiveRC.Support.Interactor;
 
-namespace RaceTime.Library.Test
+namespace RaceTime.Library.Test.LiveRC.Support
 {
     public class LiveRCAcceptanceTest
     {
