@@ -7,7 +7,7 @@ using System;
 
 namespace RaceTime.Library.Test.Scoreboard
 {
-    public class Scoreboard_AcceptanceTest
+    public class Schedule_AcceptanceTest
     {
         private IScoreboard _scoreboard;
 
