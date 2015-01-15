@@ -122,10 +122,10 @@ namespace RaceTime.Library.Controller
 
         public void Stop()
         {
-            if (HasStarted==false)
-            {
-                throw new Exception("Clock cannot be stopped.");    
-            }
+           // if (HasStarted==false && HasElapsed==false)
+           // {
+           //     throw new Exception("Clock cannot be stopped.");    
+           // }
             OnStoppedEvent();
 
             HasStarted = false;

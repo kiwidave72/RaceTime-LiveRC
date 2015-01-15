@@ -18,7 +18,7 @@ namespace RaceTime.Library.Test.Practice.Support
 
         public void Can_add_to_the_practice_schedule(PracticeClass practice)
         {
-            PracticeInteractor.AddSchedule(practice);
+            PracticeInteractor.AddToSchedule(practice);
         }
 
         public void Then_I_have_this_many(int expected)

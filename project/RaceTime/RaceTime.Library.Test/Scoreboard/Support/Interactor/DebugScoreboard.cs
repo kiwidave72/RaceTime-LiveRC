@@ -5,7 +5,7 @@ namespace RaceTime.Library.Test.Scoreboard
 {
     public class DebugScoreboard :  IScoreboard
     {
-        private long _interval = 100;
+        private long _interval = 1000;
 
         public long Interval
         {

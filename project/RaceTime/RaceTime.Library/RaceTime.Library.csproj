@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Scoreboard\IScoreboard.cs" />
+    <Compile Include="Controller\Scoreboard\SerialScoreboard.cs" />
     <Compile Include="Model\Application\Application.cs" />
     <Compile Include="Controller\RaceClock.cs" />
     <Compile Include="Model\Practice\PracticeClass.cs" />

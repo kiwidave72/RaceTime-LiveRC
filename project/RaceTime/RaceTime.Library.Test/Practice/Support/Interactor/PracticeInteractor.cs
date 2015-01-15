@@ -13,7 +13,12 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
             _meeting.Title = title;
         }
 
-        public static void AddSchedule(PracticeClass practice)
+        public static void SetNumberOfRounds(int number)
+        {
+            _meeting.Schedule.NumberOfRound = number;
+        }
+
+        public static void AddToSchedule(PracticeClass practice)
         {
             _meeting.Schedule.Add(practice);
         }
@@ -23,6 +28,10 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
             return _meeting.Schedule.Fetch();
         }
 
+        public static int CurrentRound()
+        {
+            return _meeting.Schedule.CurrentRound;
+        }
 
         public static PracticeClass CurrentPractice()
         {

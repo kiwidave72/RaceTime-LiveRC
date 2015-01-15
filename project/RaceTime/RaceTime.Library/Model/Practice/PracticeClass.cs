@@ -31,6 +31,8 @@ namespace RaceTime.Library.Model.Practice
             set { _status = value;}
         }
 
+        public int HeatNumber { get; set; }
+
         public PracticeClass(string name, long time)
         {
             Name = name;

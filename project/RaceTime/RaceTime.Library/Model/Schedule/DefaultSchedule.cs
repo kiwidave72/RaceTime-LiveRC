@@ -1,5 +1,5 @@
 ﻿using System.Runtime.InteropServices;
-using System.Threading;
+using System.Timers;
 using RaceTime.Library.Controller.Scoreboard;
 using RaceTime.Library.Model.Practice;
 using System;
@@ -16,16 +16,32 @@ namespace RaceTime.Library.Model.Schedule
     {
 
         private Timer _scoreboardNotificationTimer;
-        
-        private IScoreboard _scoreboard =null;
+
+        private IScoreboard _scoreboard = null;
 
         private List<PracticeClass> _schedule = new List<PracticeClass>();
 
         private RaceClock _clock = new RaceClock();
 
         private PracticeClass _currentPracticeClass;
-        
+
         private PracticeClass _nextPracticeClass;
+
+        private int _currentRound=1;
+
+        public int CurrentRound
+        {
+            get { return _currentRound; }
+            private set { _currentRound = value; }
+        }
+
+        private int _numberOfRounds;
+
+        public int NumberOfRound
+        {
+            get { return _numberOfRounds; }
+            set { _numberOfRounds = value; }
+        }
 
         private Timer ScoreboardNotificationTimer
         {
@@ -61,6 +77,7 @@ namespace RaceTime.Library.Model.Schedule
 
         public void Add(PracticeClass practice)
         {
+            practice.HeatNumber = _schedule.Count() +1 ;
             _schedule.Add(practice);
         }
 
@@ -71,20 +88,20 @@ namespace RaceTime.Library.Model.Schedule
         
         public void Run()
         {
-            ScoreboardNotificationTimer = new Timer(UpdateScoreboard, null, (uint)_scoreboard.Interval, _scoreboard.Interval);
 
-            _currentPracticeClass = Schedule.FirstOrDefault(i => i.Status == "Ready");
-
-            if (_currentPracticeClass == null)
+            if (ScoreboardNotificationTimer == null)
             {
-                return;
+                ScoreboardNotificationTimer = new Timer(_scoreboard.Interval);//  (UpdateScoreboard, null, (uint)_scoreboard.Interval, _scoreboard.Interval);
+                ScoreboardNotificationTimer.Elapsed += ScoreboardNotificationTimer_Elapsed;
+                ScoreboardNotificationTimer.Enabled = true;
             }
+           
+            HaveFinishRound();
 
             CurrentPracticeClass.Status = "Running";
 
             _nextPracticeClass = Schedule.FirstOrDefault(i => i.Status == "Ready");
-
-
+            
             Clock.SetRaceTime(CurrentPracticeClass.Time);
 
             Clock.Start();
@@ -93,22 +110,50 @@ namespace RaceTime.Library.Model.Schedule
 
         }
 
-        private void UpdateScoreboard(object state)
+        private void ScoreboardNotificationTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            UpdateScoreboard();
+        }
+
+        private void HaveFinishRound()
+        {
+            if (NumberOfRound == CurrentRound && Schedule.FirstOrDefault(i => i.Status == "Ready") == null)
+                return;
+            
+             _currentPracticeClass = Schedule.FirstOrDefault(i => i.Status == "Ready");
+
+            if (_currentPracticeClass == null)
+            {
+                CurrentRound++;
+                foreach (var practiceClass in Schedule)
+                {
+                    practiceClass.Status = "Ready";
+                }
+
+                _currentPracticeClass = Schedule.FirstOrDefault(i => i.Status == "Ready");
+
+            }
+        }
+
+
+        private void UpdateScoreboard()
         {
             if(_scoreboard !=null)
-                _scoreboard.WriteOutput( CurrentPracticeClass.Name +" - >"+ Clock.ElapsedTimeString);
+                _scoreboard.WriteOutput(CurrentRound + " - > " + CurrentPracticeClass.HeatNumber + " - >" + CurrentPracticeClass.Name + " - >" + Clock.ElapsedTimeString);
         }
 
         private void Clock_OnElapsedHasExpired(object sender, EventArgs e)
         {
             Clock.Stop();
-            
+            if (_currentPracticeClass == null)
+            {
+                return;
+            }
             CurrentPracticeClass.Status = "Finished";
 
             Run();
 
         }
-
-
+        
     }
 }
