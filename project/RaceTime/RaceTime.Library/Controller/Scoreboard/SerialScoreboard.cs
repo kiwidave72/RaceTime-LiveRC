@@ -21,6 +21,7 @@ namespace RaceTime.Library.Scoreboard
 
         private void ConnectPort()
         {
+            Interval = 1000;
             _serialPort = new SerialPort();
             foreach (string s in SerialPort.GetPortNames())
             {

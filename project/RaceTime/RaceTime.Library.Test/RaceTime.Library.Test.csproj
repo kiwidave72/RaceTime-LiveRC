@@ -68,7 +68,7 @@
     <Compile Include="RaceClock\about_race_clock_events.cs" />
     <Compile Include="LiveRC\About_using_liveRC.cs" />
     <Compile Include="Schedule\About_schedule.cs" />
-    <Compile Include="Schedule\About_Scoreboard.cs" />
+    <Compile Include="Scoreboard\About_Scoreboard.cs" />
     <Compile Include="Scoreboard\Support\Interactor\DebugScoreboard.cs" />
     <Compile Include="Schedule\Support\Schedule_AcceptanceTest.cs" />
   </ItemGroup>
