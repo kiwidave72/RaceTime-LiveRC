@@ -14,41 +14,41 @@ namespace RaceTime.Library.Test.Schedule
         [TestMethod]
         public void it_works_with_debug_scoreboard()
         {
-            Given_a_practice_schedule();
+            Given_two_quick_practice_races();
 
             Using_a_debug_scoreboard();
 
             Then_run_schedule();
 
-            Thread.Sleep(7000);
+            Thread.Sleep(2500);
         }
 
         [TestMethod]
         public void it_works_with_serial_scoreboard()
         {
-            Given_a_practice_schedule();
+            Given_two_quick_practice_races();
 
             Using_a_serial_scoreboard();
 
             Then_run_schedule();
 
-            Thread.Sleep(7000);
+            Thread.Sleep(2500);
         }
 
         [TestMethod]
         public void it_works_with_a_number_of_rounds()
         {
-            Given_a_practice_schedule();
+            Given_two_quick_practice_races();
 
-            When_set_to_three_rounds();
+            When_set_to_two_rounds();
 
             Using_a_debug_scoreboard();
 
             Then_run_schedule();
 
-            Thread.Sleep((1000 * 60 * 1) * 4);
+            Thread.Sleep((2000) * 2);
 
-            Then_current_round_should_be_three();
+            Then_current_round_should_be_two();
         }
 
     }

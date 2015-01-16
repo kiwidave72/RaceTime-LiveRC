@@ -10,6 +10,14 @@ namespace RaceTime.Library.Scoreboard
         private bool IsConnected = false;
         private SerialPort _serialPort;
 
+        private long _interval = 1000;
+
+        public long Interval
+        {
+            get { return _interval; }
+            set { _interval = value; }
+        }
+
         public void WriteOutput(string line)
         {
             if (IsConnected == false)
@@ -21,7 +29,7 @@ namespace RaceTime.Library.Scoreboard
 
         private void ConnectPort()
         {
-            Interval = 1000;
+            
             _serialPort = new SerialPort();
             foreach (string s in SerialPort.GetPortNames())
             {
@@ -44,6 +52,6 @@ namespace RaceTime.Library.Scoreboard
             _serialPort.Open();
         }
 
-        public long Interval { get; set; }
+        
     }
 }

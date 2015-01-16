@@ -21,6 +21,8 @@ namespace RaceTime.Library.Model.Schedule
 
         private List<PracticeClass> _schedule = new List<PracticeClass>();
 
+        private List<SpeechAnnouncement> _announcements = new List<SpeechAnnouncement>();
+
         private RaceClock _clock = new RaceClock();
 
         private PracticeClass _currentPracticeClass;
@@ -60,6 +62,11 @@ namespace RaceTime.Library.Model.Schedule
             get { return _schedule; }
         }
 
+        public List<SpeechAnnouncement> Announcements
+        {
+            get { return _announcements; }
+        }
+
         public RaceClock Clock
         {
             get { return _clock; }
@@ -91,7 +98,7 @@ namespace RaceTime.Library.Model.Schedule
 
             if (ScoreboardNotificationTimer == null)
             {
-                ScoreboardNotificationTimer = new Timer(_scoreboard.Interval);//  (UpdateScoreboard, null, (uint)_scoreboard.Interval, _scoreboard.Interval);
+                ScoreboardNotificationTimer = new Timer(_scoreboard.Interval);
                 ScoreboardNotificationTimer.Elapsed += ScoreboardNotificationTimer_Elapsed;
                 ScoreboardNotificationTimer.Enabled = true;
             }

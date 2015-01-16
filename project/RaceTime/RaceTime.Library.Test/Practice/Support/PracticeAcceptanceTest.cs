@@ -5,6 +5,7 @@ using System.Text;
 using RaceTime.Library.Test.Practice.Support.Interactor;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RaceTime.Library.Model.Practice;
+using RaceTime.Library.Test.Scoreboard;
 
 namespace RaceTime.Library.Test.Practice.Support
 {
@@ -29,7 +30,7 @@ namespace RaceTime.Library.Test.Practice.Support
 
         public void Given_the_schedule_run_with_raceclock()
         {
-            PracticeInteractor.RunSchedule(null);
+            PracticeInteractor.RunSchedule(new DebugScoreboard());
         }
 
         public void Then_current_practice_is(string name)

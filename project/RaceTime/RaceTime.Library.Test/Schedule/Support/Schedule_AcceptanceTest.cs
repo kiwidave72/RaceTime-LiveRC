@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Diagnostics;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RaceTime.Library.Controller.Scoreboard;
 using RaceTime.Library.Model.Practice;
 using RaceTime.Library.Scoreboard;
@@ -15,20 +16,32 @@ namespace RaceTime.Library.Test.Scoreboard
         {
             PracticeInteractor.SetTitle("test");
 
-            PracticeInteractor.AddToSchedule(new PracticeClass("Practice 1", 1000 * 60 * 1 ));
+            PracticeInteractor.AddToSchedule(new PracticeClass("Practice 1", 1000 * 3 ));
 
-            PracticeInteractor.AddToSchedule(new PracticeClass("Practice 2", 1000 * 60 * 1));
+            PracticeInteractor.AddToSchedule(new PracticeClass("Practice 2", 1000 * 3));
         }
 
-        protected void When_set_to_three_rounds()
+        protected void Given_two_quick_practice_races()
         {
-            PracticeInteractor.SetNumberOfRounds(3);
+            PracticeInteractor.SetTitle("test");
+
+            PracticeInteractor.AddToSchedule(new PracticeClass("Practice 1", 1000));
+
+            PracticeInteractor.AddToSchedule(new PracticeClass("Practice 2", 1000));
         }
 
-        protected void Then_current_round_should_be_three()
-        {
-          Assert.IsTrue( PracticeInteractor.CurrentRound() == 3);
 
+
+        protected void When_set_to_two_rounds()
+        {
+            PracticeInteractor.SetNumberOfRounds(2);
+        }
+
+        protected void Then_current_round_should_be_two()
+        {
+
+            Debug.WriteLine(PracticeInteractor.CurrentRound());
+            Assert.IsTrue( PracticeInteractor.CurrentRound() == 2);
         }
 
 

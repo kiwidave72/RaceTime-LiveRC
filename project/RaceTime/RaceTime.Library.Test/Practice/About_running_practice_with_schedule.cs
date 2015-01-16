@@ -17,11 +17,13 @@ namespace RaceTime.Library.Test.Practice
         {
             Given_a_meeting_called("test");
 
-            Can_add_to_the_practice_schedule(new PracticeClass("Practice 1", 30000));
+            Can_add_to_the_practice_schedule(new PracticeClass("Practice 1", 3000));
 
-            Can_add_to_the_practice_schedule(new PracticeClass("Practice 2", 30000));
+            Can_add_to_the_practice_schedule(new PracticeClass("Practice 2", 3000));
                         
             Given_the_schedule_run_with_raceclock();
+
+            Thread.Sleep(100);
 
             Then_current_practice_is("Practice 1");
 
