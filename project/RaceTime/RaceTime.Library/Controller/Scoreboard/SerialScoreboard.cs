@@ -29,17 +29,13 @@ namespace RaceTime.Library.Scoreboard
 
         private void ConnectPort()
         {
-            
             _serialPort = new SerialPort();
             foreach (string s in SerialPort.GetPortNames())
             {
-                Console.WriteLine("   {0}", s);
+                Debug.WriteLine("   {0}", s);
             }
-            foreach (string s in Enum.GetNames(typeof(StopBits)))
-            {
-                Console.WriteLine("   {0}", s);
-            }
-            _serialPort.PortName = "COM1";
+
+            _serialPort.PortName = SerialPort.GetPortNames()[0];
             _serialPort.BaudRate = 9600;
             _serialPort.Parity = Parity.None;
             _serialPort.DataBits = 8;

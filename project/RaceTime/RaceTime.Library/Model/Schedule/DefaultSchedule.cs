@@ -29,6 +29,8 @@ namespace RaceTime.Library.Model.Schedule
 
         private PracticeClass _nextPracticeClass;
 
+        private bool _isScheduleRunning;
+        
         private int _currentRound=1;
 
         public int CurrentRound
@@ -82,6 +84,12 @@ namespace RaceTime.Library.Model.Schedule
             get { return _nextPracticeClass; }
         }
 
+        public bool IsScheduleRunning
+        {
+            get { return _isScheduleRunning; }
+            private set { _isScheduleRunning = value; }
+        }
+
         public void Add(PracticeClass practice)
         {
             practice.HeatNumber = _schedule.Count() +1 ;
@@ -92,40 +100,51 @@ namespace RaceTime.Library.Model.Schedule
         {
             return _schedule;
         }
-        
+
         public void Run()
         {
 
-            if (ScoreboardNotificationTimer == null)
+            if (ScoreboardNotificationTimer == null && _scoreboard != null)
             {
                 ScoreboardNotificationTimer = new Timer(_scoreboard.Interval);
                 ScoreboardNotificationTimer.Elapsed += ScoreboardNotificationTimer_Elapsed;
                 ScoreboardNotificationTimer.Enabled = true;
             }
-           
-            HaveFinishRound();
+
+            if (HaveFinishRound())
+            {
+                IsScheduleRunning = false;
+
+                return;
+            }
 
             CurrentPracticeClass.Status = "Running";
 
             _nextPracticeClass = Schedule.FirstOrDefault(i => i.Status == "Ready");
-            
+
+            IsScheduleRunning = true;
+
             Clock.SetRaceTime(CurrentPracticeClass.Time);
 
             Clock.Start();
 
             Clock.OnElapsedHasExpired += Clock_OnElapsedHasExpired;
-
-        }
+        
+    }
 
         private void ScoreboardNotificationTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             UpdateScoreboard();
         }
 
-        private void HaveFinishRound()
+        private bool HaveFinishRound()
         {
-            if (NumberOfRound == CurrentRound && Schedule.FirstOrDefault(i => i.Status == "Ready") == null)
-                return;
+            IsScheduleRunning = false;
+
+            if (NumberOfRound == CurrentRound &&  Schedule.FirstOrDefault(i => i.Status == "Ready")== null)
+            {
+                return true;
+            }
             
              _currentPracticeClass = Schedule.FirstOrDefault(i => i.Status == "Ready");
 
@@ -140,6 +159,9 @@ namespace RaceTime.Library.Model.Schedule
                 _currentPracticeClass = Schedule.FirstOrDefault(i => i.Status == "Ready");
 
             }
+
+            return false;
+
         }
 
 
@@ -152,15 +174,22 @@ namespace RaceTime.Library.Model.Schedule
         private void Clock_OnElapsedHasExpired(object sender, EventArgs e)
         {
             Clock.Stop();
-            if (_currentPracticeClass == null)
-            {
-                return;
-            }
+           
             CurrentPracticeClass.Status = "Finished";
 
             Run();
 
         }
-        
+
+        public void Stop()
+        {
+            Clock.Stop();
+
+            IsScheduleRunning = false;
+
+            CurrentPracticeClass.Status = "Stopped";
+
+            ScoreboardNotificationTimer = null;
+        }
     }
 }

@@ -126,6 +126,8 @@ namespace RaceTime.Library.Controller
            // {
            //     throw new Exception("Clock cannot be stopped.");    
            // }
+            OnElapsedHasExpired = null;
+
             OnStoppedEvent();
 
             HasStarted = false;

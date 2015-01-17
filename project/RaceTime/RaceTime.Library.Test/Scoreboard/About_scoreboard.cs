@@ -9,14 +9,14 @@ namespace RaceTime.Library.Test.Scoreboard
     public class About_Scoreboard 
     {
 
-        [TestMethod]
-        public void for_example()
-        {
-            var scoreboard = new SerialScoreboard();
+        //[TestMethod]
+        //public void for_example()
+        //{
+        //    var scoreboard = new SerialScoreboard();
 
-            scoreboard.Interval = 1000;
+        //    scoreboard.Interval = 1000;
             
-            scoreboard.WriteOutput("testing");
-        }
+        //    scoreboard.WriteOutput("testing");
+        //}
     }
 }

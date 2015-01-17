@@ -20,7 +20,11 @@ namespace RaceTime.Library.Test.Schedule
 
             Then_run_schedule();
 
-            Thread.Sleep(2500);
+            Then_the_schedule_is_running();
+
+            Thread.Sleep(With_the_length_of_the_schedule() + 1000);
+
+            Then_the_schedules_has_finished();
         }
 
         [TestMethod]
@@ -32,8 +36,14 @@ namespace RaceTime.Library.Test.Schedule
 
             Then_run_schedule();
 
-            Thread.Sleep(2500);
+            Then_the_schedule_is_running();
+
+            Thread.Sleep(With_the_length_of_the_schedule()+1000);
+
+            Then_the_schedules_has_finished();
+
         }
+
 
         [TestMethod]
         public void it_works_with_a_number_of_rounds()
@@ -46,9 +56,33 @@ namespace RaceTime.Library.Test.Schedule
 
             Then_run_schedule();
 
-            Thread.Sleep((2000) * 2);
+            Then_the_schedule_is_running();
+
+            Thread.Sleep(With_the_length_of_the_schedule() + 1000);
 
             Then_current_round_should_be_two();
+        }
+
+        [TestMethod]
+        public void you_can_start_and_stop_the_schedule()
+        {
+
+            Given_two_quick_practice_races();
+
+            Using_a_debug_scoreboard();
+
+            Then_run_schedule();
+
+            Then_the_schedule_is_running();
+
+            Thread.Sleep(100);
+
+            Then_stop_schedule();
+
+            Then_the_schedule_has_stopped();
+
+            Then_the_schedules_current_practice_status_is_stopped();
+
         }
 
     }
