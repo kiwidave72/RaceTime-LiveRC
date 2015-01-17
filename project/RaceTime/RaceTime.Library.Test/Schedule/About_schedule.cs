@@ -20,6 +20,10 @@ namespace RaceTime.Library.Test.Schedule
 
             When_the_schedule_is_run();
 
+            Then_the_schedule_has_stopped();
+
+            Thread.Sleep(1500);
+
             Then_the_schedule_is_running();
 
             And_we_wait_until_the_end_of_the_schedule();
@@ -37,9 +41,11 @@ namespace RaceTime.Library.Test.Schedule
 
             When_the_schedule_is_run();
 
+            And_wait_for_the_interval();
+
             Then_the_schedule_is_running();
 
-            Thread.Sleep(With_the_length_of_the_schedule()+1000);
+            Thread.Sleep(With_the_length_of_the_schedule()+1500);
 
             Then_the_schedules_has_finished();
 
@@ -57,6 +63,8 @@ namespace RaceTime.Library.Test.Schedule
 
             When_the_schedule_is_run();
 
+            And_wait_for_the_interval();
+
             Then_the_schedule_is_running();
 
             Thread.Sleep(With_the_length_of_the_schedule() + 1000);
@@ -73,6 +81,8 @@ namespace RaceTime.Library.Test.Schedule
             Using_a_debug_scoreboard();
 
             When_the_schedule_is_run();
+
+            And_wait_for_the_interval();
 
             Then_the_schedule_is_running();
 

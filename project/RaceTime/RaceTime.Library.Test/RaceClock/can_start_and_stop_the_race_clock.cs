@@ -32,7 +32,7 @@ namespace RaceTime.Library.Test.RaceClock
         {
             When_I_stop_the_clock();
 
-            Then_I_get_an_error("Clock cannot be stopped.");
+            Then_I_get_an_error("RaceClock cannot be stopped.");
             
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using RaceTime.Library.Controller.Scoreboard;
+using RaceTime.Library.Model.Announcement;
 using RaceTime.Library.Model.Practice;
 using RaceTime.Library.Model.Schedule;
 using RaceTime.Library.Test.Meeting;
@@ -61,9 +62,11 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
         }
 
 
-        public void RunSchedule(IScoreboard _scoreboard)
+        public void RunSchedule(IScoreboard _scoreboard, long interval)
         {
             _meeting.Schedule.Scoreboard = _scoreboard;
+            _meeting.Schedule.Interval = interval;
+            
             _meeting.Schedule.Run();
         }
 

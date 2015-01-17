@@ -36,7 +36,7 @@ namespace RaceTime.Library.Test.Practice.Support
 
         public void Given_the_schedule_run_with_raceclock()
         {
-            interactor.RunSchedule(new DebugScoreboard());
+            interactor.RunSchedule(new DebugScoreboard(),0);
         }
 
         public void Then_current_practice_is(string name)

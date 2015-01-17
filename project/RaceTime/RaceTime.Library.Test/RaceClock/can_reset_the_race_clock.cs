@@ -18,7 +18,7 @@ namespace RaceTime.Library.Test.RaceClock
 
             When_I_reset_the_clock();
 
-            Then_I_get_an_error("Clock cannot be reset while it is running.");
+            Then_I_get_an_error("RaceClock cannot be reset while it is running.");
         }
 
         [TestMethod]

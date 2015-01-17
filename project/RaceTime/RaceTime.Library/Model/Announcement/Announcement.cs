@@ -1,4 +1,4 @@
-﻿namespace RaceTime.Library.Model.Schedule
+﻿namespace RaceTime.Library.Model.Announcement
 {
 
     public enum ScheduleEventType
@@ -6,7 +6,8 @@
         Started,
         Stopped,
         Finished,
-        Next
+        IntervalStarted,
+        TenSecondCountedStarted
 
     }
 

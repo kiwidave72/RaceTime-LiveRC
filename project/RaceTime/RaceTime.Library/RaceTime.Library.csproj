@@ -45,7 +45,7 @@
     <Compile Include="Model\Application\Application.cs" />
     <Compile Include="Controller\RaceClock.cs" />
     <Compile Include="Model\Practice\PracticeClass.cs" />
-    <Compile Include="Model\Schedule\Announcement.cs" />
+    <Compile Include="Model\Announcement\Announcement.cs" />
     <Compile Include="Model\Schedule\DefaultSchedule.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Storage\ApplicationStorage.cs" />
@@ -59,6 +59,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

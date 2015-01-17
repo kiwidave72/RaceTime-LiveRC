@@ -124,7 +124,7 @@ namespace RaceTime.Library.Controller
         {
            // if (HasStarted==false && HasElapsed==false)
            // {
-           //     throw new Exception("Clock cannot be stopped.");    
+           //     throw new Exception("RaceClock cannot be stopped.");    
            // }
             OnElapsedHasExpired = null;
 
@@ -139,7 +139,7 @@ namespace RaceTime.Library.Controller
         {
             if (HasStarted)
             {
-                throw new Exception("Clock cannot be reset while it is running.");
+                throw new Exception("RaceClock cannot be reset while it is running.");
             }
             OnResetEvent();
 

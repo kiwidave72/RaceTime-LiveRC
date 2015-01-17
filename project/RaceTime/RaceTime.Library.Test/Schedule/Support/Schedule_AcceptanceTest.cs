@@ -2,6 +2,7 @@
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RaceTime.Library.Controller.Scoreboard;
+using RaceTime.Library.Model.Announcement;
 using RaceTime.Library.Model.Practice;
 using RaceTime.Library.Model.Schedule;
 using RaceTime.Library.Scoreboard;
@@ -15,7 +16,7 @@ namespace RaceTime.Library.Test.Scoreboard
     {
         private IScoreboard _scoreboard;
 
-        private List<Announcement>  raisedAnnouncments = new List<Announcement>();
+        private List<Announcement> raisedAnnouncments = new List<Announcement>();
         
         public PracticeInteractor interactor;
 
@@ -25,9 +26,22 @@ namespace RaceTime.Library.Test.Scoreboard
         }
 
 
+        public void And_interval_and_stopped_announcements()
+        {
+
+            interactor.AddAnnouncmentToSchedule(new Announcement(ScheduleEventType.IntervalStarted, "Interval Started"));
+
+            interactor.AddAnnouncmentToSchedule(new Announcement(ScheduleEventType.Stopped, "Practice Stopped"));
+
+            interactor.Schedule.OnAnnouncement += (sender, e) => raisedAnnouncments.Add(e);
+            
+        }
+
         public void And_these_announcements()
         {
-            interactor.AddAnnouncmentToSchedule(new Announcement(ScheduleEventType.Started,"Practice Started"));
+            interactor.AddAnnouncmentToSchedule(new Announcement(ScheduleEventType.IntervalStarted, "Interval Started"));
+
+            interactor.AddAnnouncmentToSchedule(new Announcement(ScheduleEventType.Started, "Practice Started"));
 
             interactor.AddAnnouncmentToSchedule(new Announcement(ScheduleEventType.Finished, "Practice Finished"));
 
@@ -108,7 +122,7 @@ namespace RaceTime.Library.Test.Scoreboard
 
             foreach (var practiceClass in interactor.All())
             {
-                total_time = total_time + (int)practiceClass.Time;
+                total_time = total_time + (int)practiceClass.Time + (int)interactor.Schedule.Interval;
             }
 
             total_time = total_time * interactor.GetNumberOfRounds();
@@ -119,7 +133,7 @@ namespace RaceTime.Library.Test.Scoreboard
 
         protected void When_the_schedule_is_run()
         {
-            interactor.RunSchedule(_scoreboard);
+            interactor.RunSchedule(_scoreboard,1000);
         }
 
         protected void Then_the_schedule_is_running()
@@ -139,11 +153,31 @@ namespace RaceTime.Library.Test.Scoreboard
 
         protected void And_we_have_all_the_annoucements_returned()
         {
-            Assert.IsTrue(raisedAnnouncments.Count == 4);
-            Assert.IsTrue(raisedAnnouncments[0].Text == "Practice Started");
-            Assert.IsTrue(raisedAnnouncments[1].Text == "Practice Finished");
-            Assert.IsTrue(raisedAnnouncments[2].Text == "Practice Started");
-            Assert.IsTrue(raisedAnnouncments[3].Text == "Practice Finished");
+            Assert.IsTrue(raisedAnnouncments.Count == 6);
+
+            Assert.IsTrue(raisedAnnouncments[0].Text == "Interval Started");
+
+            Assert.IsTrue(raisedAnnouncments[1].Text == "Practice Started");
+
+            Assert.IsTrue(raisedAnnouncments[2].Text == "Practice Finished");
+
+            Assert.IsTrue(raisedAnnouncments[3].Text == "Interval Started");
+
+            Assert.IsTrue(raisedAnnouncments[4].Text == "Practice Started");
+
+            Assert.IsTrue(raisedAnnouncments[5].Text == "Practice Finished");
+        }
+
+        protected void And_we_just_get_interval_and_stopped_annoucement_returned()
+        {
+            Assert.IsTrue(raisedAnnouncments.Count == 2);
+            Assert.IsTrue(raisedAnnouncments[0].Text == "Interval Started");
+            Assert.IsTrue(raisedAnnouncments[1].Text == "Practice Stopped");
+        }
+
+        protected static void And_wait_for_the_interval()
+        {
+            Thread.Sleep(1500);
         }
     }
 }
