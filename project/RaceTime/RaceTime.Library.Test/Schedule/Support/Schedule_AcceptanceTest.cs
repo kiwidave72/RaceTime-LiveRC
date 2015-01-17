@@ -130,10 +130,14 @@ namespace RaceTime.Library.Test.Scoreboard
             return total_time ;
         }
 
+        protected void When_the_schedule_is_run_with_an_interval()
+        {
+            interactor.RunSchedule(_scoreboard, 1000);
+        }
 
         protected void When_the_schedule_is_run()
         {
-            interactor.RunSchedule(_scoreboard,1000);
+            interactor.RunSchedule(_scoreboard,0);
         }
 
         protected void Then_the_schedule_is_running()

@@ -19,7 +19,7 @@ namespace RaceTime.Library.Test.Schedule
 
             And_these_announcements();
             
-            When_the_schedule_is_run();
+            When_the_schedule_is_run_with_an_interval();
 
             And_wait_for_the_interval();
 
@@ -40,7 +40,7 @@ namespace RaceTime.Library.Test.Schedule
 
             And_interval_and_stopped_announcements();
 
-            When_the_schedule_is_run();
+            When_the_schedule_is_run_with_an_interval();
 
             And_wait_for_the_interval();
 

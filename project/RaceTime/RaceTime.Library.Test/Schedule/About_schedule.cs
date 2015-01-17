@@ -18,11 +18,11 @@ namespace RaceTime.Library.Test.Schedule
 
             Using_a_debug_scoreboard();
 
-            When_the_schedule_is_run();
+            When_the_schedule_is_run_with_an_interval();
 
             Then_the_schedule_has_stopped();
 
-            Thread.Sleep(1500);
+            And_wait_for_the_interval();
 
             Then_the_schedule_is_running();
 
@@ -71,6 +71,26 @@ namespace RaceTime.Library.Test.Schedule
 
             Then_current_round_should_be_two();
         }
+
+
+        [TestMethod]
+        public void it_works_with_not_interval_set()
+        {
+            Given_two_quick_practice_races();
+
+            When_set_to_two_rounds();
+
+            Using_a_debug_scoreboard();
+
+            When_the_schedule_is_run();
+            
+            Then_the_schedule_is_running();
+
+            Thread.Sleep(With_the_length_of_the_schedule() + 1000);
+
+            Then_current_round_should_be_two();
+        }
+
 
         [TestMethod]
         public void you_can_start_and_stop_the_schedule()
