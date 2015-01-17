@@ -18,15 +18,16 @@ namespace RaceTime.Library.Test.Schedule
 
             Using_a_debug_scoreboard();
 
-            Then_run_schedule();
+            When_the_schedule_is_run();
 
             Then_the_schedule_is_running();
 
-            Thread.Sleep(With_the_length_of_the_schedule() + 1000);
+            And_we_wait_until_the_end_of_the_schedule();
 
             Then_the_schedules_has_finished();
         }
 
+        
         [TestMethod]
         public void it_works_with_serial_scoreboard()
         {
@@ -34,7 +35,7 @@ namespace RaceTime.Library.Test.Schedule
 
             Using_a_serial_scoreboard();
 
-            Then_run_schedule();
+            When_the_schedule_is_run();
 
             Then_the_schedule_is_running();
 
@@ -54,7 +55,7 @@ namespace RaceTime.Library.Test.Schedule
 
             Using_a_debug_scoreboard();
 
-            Then_run_schedule();
+            When_the_schedule_is_run();
 
             Then_the_schedule_is_running();
 
@@ -71,7 +72,7 @@ namespace RaceTime.Library.Test.Schedule
 
             Using_a_debug_scoreboard();
 
-            Then_run_schedule();
+            When_the_schedule_is_run();
 
             Then_the_schedule_is_running();
 

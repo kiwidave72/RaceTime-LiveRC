@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Timers;
 using RaceTime.Library.Controller.Scoreboard;
 using RaceTime.Library.Model.Practice;
@@ -15,13 +16,15 @@ namespace RaceTime.Library.Model.Schedule
     public class DefaultSchedule
     {
 
+        public event AnnouncementHandler OnAnnouncement;
+        
         private Timer _scoreboardNotificationTimer;
 
         private IScoreboard _scoreboard = null;
 
         private List<PracticeClass> _schedule = new List<PracticeClass>();
 
-        private List<SpeechAnnouncement> _announcements = new List<SpeechAnnouncement>();
+        private List<Announcement> _announcements = new List<Announcement>();
 
         private RaceClock _clock = new RaceClock();
 
@@ -64,7 +67,7 @@ namespace RaceTime.Library.Model.Schedule
             get { return _schedule; }
         }
 
-        public List<SpeechAnnouncement> Announcements
+        public List<Announcement> Announcements
         {
             get { return _announcements; }
         }
@@ -101,6 +104,17 @@ namespace RaceTime.Library.Model.Schedule
             return _schedule;
         }
 
+
+        protected virtual void OnAnnoucementEvent(Announcement announcement )
+        {
+            AnnouncementHandler handler = OnAnnouncement;
+
+            Debug.WriteLine(announcement.Text);
+
+            if (handler != null) handler(this, announcement);
+        }
+
+
         public void Run()
         {
 
@@ -123,6 +137,10 @@ namespace RaceTime.Library.Model.Schedule
             _nextPracticeClass = Schedule.FirstOrDefault(i => i.Status == "Ready");
 
             IsScheduleRunning = true;
+            
+            var announcement = Announcements.FirstOrDefault(i => i.EventType == ScheduleEventType.Started);
+            
+            OnAnnoucementEvent(announcement);
 
             Clock.SetRaceTime(CurrentPracticeClass.Time);
 
@@ -177,6 +195,10 @@ namespace RaceTime.Library.Model.Schedule
            
             CurrentPracticeClass.Status = "Finished";
 
+            var announcement = Announcements.FirstOrDefault(i => i.EventType == ScheduleEventType.Finished);
+
+            OnAnnoucementEvent(announcement);
+
             Run();
 
         }
@@ -185,6 +207,10 @@ namespace RaceTime.Library.Model.Schedule
         {
             Clock.Stop();
 
+            var announcement = Announcements.FirstOrDefault(i => i.EventType == ScheduleEventType.Stopped);
+
+            OnAnnoucementEvent(announcement);
+            
             IsScheduleRunning = false;
 
             CurrentPracticeClass.Status = "Stopped";
@@ -192,4 +218,6 @@ namespace RaceTime.Library.Model.Schedule
             ScoreboardNotificationTimer = null;
         }
     }
+
+    public delegate void AnnouncementHandler(object sender, Announcement announcement);
 }

@@ -1,10 +1,13 @@
 ﻿using System.Diagnostics;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RaceTime.Library.Controller.Scoreboard;
 using RaceTime.Library.Model.Practice;
+using RaceTime.Library.Model.Schedule;
 using RaceTime.Library.Scoreboard;
 using RaceTime.Library.Test.Practice.Support.Interactor;
 using System;
+using System.Collections.Generic;
 
 namespace RaceTime.Library.Test.Scoreboard
 {
@@ -12,11 +15,24 @@ namespace RaceTime.Library.Test.Scoreboard
     {
         private IScoreboard _scoreboard;
 
-        private PracticeInteractor interactor;
+        private List<Announcement>  raisedAnnouncments = new List<Announcement>();
+        
+        public PracticeInteractor interactor;
 
         public Schedule_AcceptanceTest()
         {
             interactor = new PracticeInteractor();
+        }
+
+
+        public void And_these_announcements()
+        {
+            interactor.AddAnnouncmentToSchedule(new Announcement(ScheduleEventType.Started,"Practice Started"));
+
+            interactor.AddAnnouncmentToSchedule(new Announcement(ScheduleEventType.Finished, "Practice Finished"));
+
+            interactor.Schedule.OnAnnouncement += (sender, e) => raisedAnnouncments.Add(e);
+            
         }
 
         protected void Given_a_practice_schedule()
@@ -44,6 +60,12 @@ namespace RaceTime.Library.Test.Scoreboard
             interactor.SetNumberOfRounds(1);
 
         }
+
+        public void And_we_wait_until_the_end_of_the_schedule()
+        {
+            Thread.Sleep(With_the_length_of_the_schedule() + 1000);
+        }
+
 
         public void Then_the_schedules_has_finished()
         {
@@ -95,7 +117,7 @@ namespace RaceTime.Library.Test.Scoreboard
         }
 
 
-        protected void Then_run_schedule()
+        protected void When_the_schedule_is_run()
         {
             interactor.RunSchedule(_scoreboard);
         }
@@ -115,5 +137,13 @@ namespace RaceTime.Library.Test.Scoreboard
             _scoreboard = new SerialScoreboard();
         }
 
+        protected void And_we_have_all_the_annoucements_returned()
+        {
+            Assert.IsTrue(raisedAnnouncments.Count == 4);
+            Assert.IsTrue(raisedAnnouncments[0].Text == "Practice Started");
+            Assert.IsTrue(raisedAnnouncments[1].Text == "Practice Finished");
+            Assert.IsTrue(raisedAnnouncments[2].Text == "Practice Started");
+            Assert.IsTrue(raisedAnnouncments[3].Text == "Practice Finished");
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using RaceTime.Library.Controller.Scoreboard;
 using RaceTime.Library.Model.Practice;
+using RaceTime.Library.Model.Schedule;
+using RaceTime.Library.Test.Meeting;
 
 namespace RaceTime.Library.Test.Practice.Support.Interactor
 {
@@ -11,6 +13,10 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
         public void SetTitle(string title)
         {
             _meeting.Title = title;
+        }
+
+        public DefaultSchedule Schedule {
+            get { return _meeting.Schedule; }
         }
 
         public void SetNumberOfRounds(int number)
@@ -61,9 +67,15 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
             _meeting.Schedule.Run();
         }
 
+
         public void StopSchedule()
         {
             _meeting.Schedule.Stop();
+        }
+
+        public void AddAnnouncmentToSchedule(Announcement announcement)
+        {
+            _meeting.Schedule.Announcements.Add(announcement);
         }
     }
 }

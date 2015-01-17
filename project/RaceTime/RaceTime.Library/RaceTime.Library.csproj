@@ -45,7 +45,7 @@
     <Compile Include="Model\Application\Application.cs" />
     <Compile Include="Controller\RaceClock.cs" />
     <Compile Include="Model\Practice\PracticeClass.cs" />
-    <Compile Include="Model\Schedule\SpeechAnnouncement.cs" />
+    <Compile Include="Model\Schedule\Announcement.cs" />
     <Compile Include="Model\Schedule\DefaultSchedule.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Storage\ApplicationStorage.cs" />
