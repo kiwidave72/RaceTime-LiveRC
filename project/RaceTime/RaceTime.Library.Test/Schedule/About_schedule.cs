@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RaceTime.Library.Model;
 using RaceTime.Library.Test.Scoreboard;
 
 namespace RaceTime.Library.Test.Schedule
@@ -72,9 +73,28 @@ namespace RaceTime.Library.Test.Schedule
             Then_current_round_should_be_two();
         }
 
+        [TestMethod]
+        public void you_can_change_the_practice_classes_while_its_running()
+        {
+            Given_two_quick_practice_races();
+
+            When_set_to_two_rounds();
+
+            When_the_schedule_is_run();
+
+            When_a_heat_name_is_changed_to(1,"davids heat");
+
+            Then_the_heat_name_has_changed_with(1, "davids heat");
+
+            Thread.Sleep(With_the_length_of_the_schedule() + 1000);
+
+            Then_current_round_should_be_two();
+        }
+
+
 
         [TestMethod]
-        public void it_works_with_not_interval_set()
+        public void it_works_with_no_interval_set()
         {
             Given_two_quick_practice_races();
 
@@ -90,7 +110,6 @@ namespace RaceTime.Library.Test.Schedule
 
             Then_current_round_should_be_two();
         }
-
 
         [TestMethod]
         public void you_can_start_and_stop_the_schedule()

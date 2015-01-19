@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using RaceTime.Library.Controller.Scoreboard;
-using RaceTime.Library.Model.Announcement;
+using RaceTime.Library.Model;
 using RaceTime.Library.Model.Practice;
 using RaceTime.Library.Model.Schedule;
 using RaceTime.Library.Test.Meeting;
@@ -29,13 +30,17 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
         {
             return _meeting.Schedule.NumberOfRound ;
         }
-
-
+        
         public void AddToSchedule(PracticeClass practice)
         {
             _meeting.Schedule.Add(practice);
         }
 
+        public void ChangeHeatName(int heatNumber, string name)
+        {
+            _meeting.Schedule.Change(heatNumber, name);
+        }
+        
         public List<PracticeClass> All()
         {
             return _meeting.Schedule.Fetch();
@@ -76,9 +81,9 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
             _meeting.Schedule.Stop();
         }
 
-        public void AddAnnouncmentToSchedule(Announcement announcement)
+        public void AddAnnouncmentToSchedule(Model.Announcement announcement)
         {
-            _meeting.Schedule.Announcements.Add(announcement);
+            _meeting.Schedule.AddAnnoucement(announcement);
         }
     }
 }

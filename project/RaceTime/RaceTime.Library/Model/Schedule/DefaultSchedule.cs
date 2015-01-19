@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Timers;
 using RaceTime.Library.Controller.Scoreboard;
-using RaceTime.Library.Model.Announcement;
+using RaceTime.Library.Model;
 using RaceTime.Library.Model.Practice;
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace RaceTime.Library.Model.Schedule
 
         private List<PracticeClass> _schedule = new List<PracticeClass>();
 
-        private List<Announcement.Announcement> _announcements = new List<Announcement.Announcement>();
+        private List<Announcement> _announcements = new List<Announcement>();
 
         private RaceClock _raceClock = new RaceClock();
 
@@ -70,7 +70,7 @@ namespace RaceTime.Library.Model.Schedule
             get { return _schedule; }
         }
 
-        public List<Announcement.Announcement> Announcements
+        public List<Announcement> Announcements
         {
             get { return _announcements; }
         }
@@ -110,13 +110,27 @@ namespace RaceTime.Library.Model.Schedule
             _schedule.Add(practice);
         }
 
+        public void Change(int heatNumber, string name)
+        {
+            var practiceClass = Schedule.SingleOrDefault(i => i.HeatNumber == heatNumber);
+            if (practiceClass != null)
+            {
+                practiceClass.Name = name;
+            }
+            else
+            {
+                throw new Exception(string.Format("Unable to find heat {0}",heatNumber));
+            }
+        }
+
+
         public List<PracticeClass> Fetch()
         {
             return _schedule;
         }
 
 
-        protected virtual void OnAnnoucementEvent(Announcement.Announcement announcement )
+        protected virtual void OnAnnoucementEvent(Announcement announcement )
         {
             if (announcement == null)
                 return;
@@ -275,7 +289,21 @@ namespace RaceTime.Library.Model.Schedule
 
             ScoreboardNotificationTimer = null;
         }
-    }
 
-    public delegate void AnnouncementHandler(object sender, Announcement.Announcement announcement);
+        public void AddAnnoucement(Announcement announcement)
+        {
+            var matchingAccoucement = Announcements.SingleOrDefault(i => i.EventType == announcement.EventType);
+
+            if (matchingAccoucement != null)
+            {
+                Announcements.Remove(matchingAccoucement);
+            }
+
+            Announcements.Add(announcement);
+        }
+
+    }
+    
+
+    public delegate void AnnouncementHandler(object sender, Announcement announcement);
 }

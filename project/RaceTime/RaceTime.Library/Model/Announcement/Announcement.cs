@@ -1,4 +1,4 @@
-﻿namespace RaceTime.Library.Model.Announcement
+﻿namespace RaceTime.Library.Model
 {
 
     public enum ScheduleEventType

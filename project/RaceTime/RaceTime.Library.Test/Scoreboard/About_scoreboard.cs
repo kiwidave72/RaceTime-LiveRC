@@ -10,7 +10,7 @@ namespace RaceTime.Library.Test.Scoreboard
     {
 
         //[TestMethod]
-        //public void for_example()
+        //public void announcements_are_raised_during_the_running_of_the_schedule()
         //{
         //    var scoreboard = new SerialScoreboard();
 
