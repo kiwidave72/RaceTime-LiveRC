@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="can_create_raceclockviewmodel.cs" />
+    <Compile Include="can_create_ScheduleModelView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RaceTime.GUI\RaceTime.GUI.csproj">
