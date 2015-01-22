@@ -106,3 +106,5 @@ C:\Git\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI.
 C:\Git\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI.csproj.GenerateResource.Cache
 C:\Git\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI.exe
 C:\Git\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\RaceTime.GUI.pdb
+C:\Git\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\PracticeMain.baml
+C:\Git\RaceTime-LiveRC\project\RaceTime\RaceTime.GUI\obj\x86\Debug\PracticeMain.g.cs

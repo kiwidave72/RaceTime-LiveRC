@@ -1,0 +1,54 @@
+﻿<Window x:Class="RaceTime.GUI.PracticeMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PracticeMain"  WindowStartupLocation="CenterScreen" WindowState="Maximized" Loaded="Window_Loaded">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        
+            <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Right">
+                 <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="CurrentRound" FontSize="40" Text="{Binding CurrentRound}"></TextBlock>
+                    <TextBlock x:Name="NumberOfRounds" FontSize="40" Text="{Binding NumberOfRounds}"></TextBlock>
+
+                    <TextBlock x:Name="CurrentClass" FontSize="40" Text="{Binding CurrentClass.HeatNumber}"></TextBlock>
+                    <TextBlock x:Name="CurrentClassName" FontSize="40" Text="{Binding CurrentClass.Name}"></TextBlock>
+
+                </StackPanel>
+                <TextBlock x:Name="ElapesedTime" TextAlignment="Left"  MinWidth="200" Foreground="Red" FontSize="60" Text="{Binding ElapsedTime}"></TextBlock>
+                <TextBlock x:Name="Announcement" FontSize="40" Text="{Binding AnnouncmentText}"></TextBlock>
+            </StackPanel>
+            <ListBox Grid.Row="1" x:Name="ListPractice" ItemsSource="{Binding Schedule}" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding HeatNumber}" />
+                            <TextBlock Grid.Column="1" Text="{Binding Name}" />
+                            <TextBlock Grid.Column="2" Text="{Binding Time}" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+        <StackPanel Grid.Row="2">
+            <Button x:Name="StartButton" Command="{Binding StartScheduleCommand}">
+                Start Practice
+            </Button>
+            <Button x:Name="StopButton" Command="{Binding StopScheduleCommand}">
+                Stop Practice
+            </Button>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

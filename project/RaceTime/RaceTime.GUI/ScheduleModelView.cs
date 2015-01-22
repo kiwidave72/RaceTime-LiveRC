@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Speech.Synthesis;
 using System.Text;
 using System.Threading;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using RaceTime.Library.Annotations;
 using RaceTime.Library.Model;
+using RaceTime.Library.Model.Practice;
 using RaceTime.Library.Model.Schedule;
 
 namespace RaceTime.GUI
@@ -17,6 +19,7 @@ namespace RaceTime.GUI
 
         private DefaultSchedule _model = new DefaultSchedule();
 
+        private SpeechSynthesizer _speechSynthesizer = new SpeechSynthesizer();
 
         private Timer _timer;
         private string _elapsedTime;
@@ -24,6 +27,9 @@ namespace RaceTime.GUI
         private DelegateCommand _stopScheduleCommand;
         private DelegateCommand _startScheduleCommand;
         private string _annoucementText;
+        private int _currentRound;
+        private int _numberOfRounds;
+        private PracticeClass _currentClass;
 
 
         public ScheduleModelView()
@@ -32,6 +38,7 @@ namespace RaceTime.GUI
             _stopScheduleCommand = new DelegateCommand(StopSchedule);
 
             _model.OnAnnouncement += OnAnnouncement;
+            _speechSynthesizer.SpeakCompleted += _speechSynthesizer_SpeakCompleted;
 
         }
 
@@ -62,7 +69,42 @@ namespace RaceTime.GUI
 
             }
         }
-        
+
+        public int CurrentRound
+        {
+            get { return  _currentRound; }
+            set
+            {
+                _currentRound = value;
+                OnPropertyChanged("CurrentRound");
+
+            }
+        }
+
+        public int NumberOfRounds
+        {
+            get { return _numberOfRounds; }
+            set
+            {
+                _numberOfRounds = value;
+                OnPropertyChanged("NumberOfRounds");
+
+            }
+        }
+
+        public PracticeClass CurrentClass
+        {
+            get { return _currentClass; }
+            set
+            {
+                _currentClass = value;
+                OnPropertyChanged("CurrentClass");
+
+            }
+        }
+
+
+
         public ICommand StartScheduleCommand
         {
             get { return _startScheduleCommand; }
@@ -79,7 +121,8 @@ namespace RaceTime.GUI
         {
             _timer = new Timer(UpdateTimer);
             _timer.Change(100, 100);
-
+            _model.NumberOfRound = 1;
+            _model.Interval = 10000;
             _model.Run();
         }
 
@@ -93,13 +136,22 @@ namespace RaceTime.GUI
 
         private void UpdateTimer(object state)
         {
-            this.ElapsedTime = _model.RaceClock.ElapsedTimeString;
-
+            ElapsedTime = Model.RaceClock.ElapsedTimeString;
+            CurrentRound = Model.CurrentRound;
+            NumberOfRounds = Model.NumberOfRound;
+            CurrentClass = Model.CurrentPracticeClass;
         }
 
         private void OnAnnouncement(object sender, Announcement e)
         {
-            this.AnnouncmentText = e.Text;
+            AnnouncmentText = e.Text;
+            
+            _speechSynthesizer.SpeakAsync(AnnouncmentText);
+        }
+
+        void _speechSynthesizer_SpeakCompleted(object sender, SpeakCompletedEventArgs e)
+        {
+            AnnouncmentText = "";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
