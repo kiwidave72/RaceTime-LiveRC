@@ -66,7 +66,7 @@ namespace RaceTime.GUI
 
         private void UpdateTimer(object state)
         {
-            this.ElapsedTime = _model.ElapsedTimeString;
+            this.ElapsedTime = _model.ElapsedTimeMinutesSecondsMillisecondsString;
         }
 
        
@@ -76,7 +76,7 @@ namespace RaceTime.GUI
             set
             {
                 _elapsedTime = value;
-                OnPropertyChanged("ElapsedTime");
+                OnPropertyChanged("ElapsedTimeString");
             }
         }
 

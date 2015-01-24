@@ -74,7 +74,8 @@ namespace RaceTime.Library.Controller
             
             return elapsed;
         }
-        public string ElapsedTimeString
+        
+        public string ElapsedTimeMinutesSecondsMillisecondsString
         {
 
             get
@@ -84,6 +85,69 @@ namespace RaceTime.Library.Controller
                     result.Milliseconds);
             }
         }
+
+        public string ElapsedTimeMinutesSecondsString
+        {
+
+            get
+            {
+                var result = new TimeSpan(Elapsed());
+                return string.Format("{0}:{1}", result.Minutes, result.Seconds);
+            }
+        }
+
+        public long Remaining()
+        {
+            long remaining = 0;
+
+            if (HasStarted)
+            {
+                remaining = (RaceTime * 1000 * 10)- (Elapsed() );
+            }
+            else
+            {
+                remaining = 0;
+            }
+
+            return remaining ;
+        }
+
+        public long RemainingMinutes()
+        {
+            var result = new TimeSpan(Remaining());
+
+            long minutes = result.Minutes;
+            long seconds = result.Seconds;
+
+            if (seconds > 50)
+            {
+                minutes++;
+            }
+
+            return minutes;
+        }
+
+        public string RemainingTimeMinutesSecondsString
+        {
+
+            get
+            {
+                var result = new TimeSpan(Remaining());
+                return string.Format("{0}:{1}", result.Minutes, result.Seconds);
+            }
+        }
+
+        public string RemainingTimeMinutesSecondsMillisecondsString
+        {
+
+            get
+            {
+                var result = new TimeSpan(Remaining());
+                return string.Format("{0}:{1}.{3}", result.Minutes, result.Seconds,
+                    result.Milliseconds);
+            }
+        }
+
 
         public string RaceTimeString
         {

@@ -6,24 +6,52 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="150"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>        
         
-        
-            <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Right">
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" >
                  <StackPanel Orientation="Horizontal">
-                    <TextBlock x:Name="CurrentRound" FontSize="40" Text="{Binding CurrentRound}"></TextBlock>
-                    <TextBlock x:Name="NumberOfRounds" FontSize="40" Text="{Binding NumberOfRounds}"></TextBlock>
-
-                    <TextBlock x:Name="CurrentClass" FontSize="40" Text="{Binding CurrentClass.HeatNumber}"></TextBlock>
-                    <TextBlock x:Name="CurrentClassName" FontSize="40" Text="{Binding CurrentClass.Name}"></TextBlock>
+                    <Label>Heat:</Label>
+                    <Label FontSize="40" Content="{Binding CurrentClass.HeatNumber}"></Label>
+                    <Label FontSize="40" >/</Label>
+                    <Label FontSize="40" Content="{Binding Schedule.Count}"></Label>
+               
+                    <Label>Round:</Label>
+                    <Label FontSize="40" Content="{Binding CurrentRound}"></Label>
+                    <Label FontSize="40" >/</Label>
+                    <Label FontSize="40" Content="{Binding NumberOfRounds}"></Label>
 
                 </StackPanel>
-                <TextBlock x:Name="ElapesedTime" TextAlignment="Left"  MinWidth="200" Foreground="Red" FontSize="60" Text="{Binding ElapsedTime}"></TextBlock>
-                <TextBlock x:Name="Announcement" FontSize="40" Text="{Binding AnnouncmentText}"></TextBlock>
-            </StackPanel>
-            <ListBox Grid.Row="1" x:Name="ListPractice" ItemsSource="{Binding Schedule}" >
+                <StackPanel Orientation="Horizontal">
+                    <Label>Current Heat:</Label>
+                <Label FontSize="20" Content="{Binding CurrentClass.Name}"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label>Next Up:</Label>
+                <Label FontSize="20" Content="{Binding NextClass.Name}"></Label>
+                </StackPanel>
+                <TextBlock x:Name="Announcement" Text="{Binding AnnouncmentText}"></TextBlock>
+        </StackPanel>
+
+        <ProgressBar Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal"  Minimum="0" Maximum="{Binding PracticeTime}" Value="{Binding ElapsedTime}" />
+        
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left">
+            <TextBlock TextAlignment="Left"  MinWidth="200" Foreground="Red" FontSize="60" Text="{Binding ElapsedTimeString}"></TextBlock>
+            <TextBlock TextAlignment="Left"  MinWidth="200" Foreground="blue" FontSize="30" Text="{Binding RaceTimeRemainingTimeString}"></TextBlock>
+            <TextBlock TextAlignment="Left"  MinWidth="200" Foreground="blue" FontSize="30" Text="{Binding IntervalElapsedTime}"></TextBlock>
+
+            <TextBlock TextAlignment="Left"  MinWidth="200" Text="{Binding PracticeTime}"></TextBlock>
+            <TextBlock TextAlignment="Left"  MinWidth="200" Text="{Binding ElapsedTime}"></TextBlock>
+
+        </StackPanel>
+        <ListBox Grid.Row="3" x:Name="ListPractice" ItemsSource="{Binding Schedule}" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,5">
@@ -31,24 +59,29 @@
                                 <ColumnDefinition Width="20" />
                                 <ColumnDefinition Width="200" />
                                 <ColumnDefinition Width="100" />
-                            </Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+
+                        </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="{Binding HeatNumber}" />
                             <TextBlock Grid.Column="1" Text="{Binding Name}" />
                             <TextBlock Grid.Column="2" Text="{Binding Time}" />
-                        </Grid>
+                            <TextBlock Grid.Column="3" Text="{Binding Status}" />
+                            <TextBlock Grid.Column="4" Text="{Binding ScheduledTime, StringFormat=@{0:HH:mm}}" />
+
+                    </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
             
-        <StackPanel Grid.Row="2">
-            <Button x:Name="StartButton" Command="{Binding StartScheduleCommand}">
-                Start Practice
-            </Button>
-            <Button x:Name="StopButton" Command="{Binding StopScheduleCommand}">
-                Stop Practice
-            </Button>
-
+            <Button  Grid.Column="0" Grid.Row="2" Height="100" Padding="5,5,5,5"  Foreground="Silver" FontSize="35" Content="Start" Command="{Binding StartScheduleCommand}"/>
+            <Button  Grid.Column="1" Grid.Row="2" Height="100" Padding="5,5,5,5"  Foreground="Silver" FontSize="35" Content="Stop" Command="{Binding StopScheduleCommand}"/>
+        
+        <StackPanel Grid.Row="4">
+            <ListBox x:Name="ScoreboardErrors" ItemsSource="{Binding ScoreboardErrors}" >
+                
+            </ListBox>
+            <Label x:Name="ScoreboardOuput" Content="{Binding ScoreboardOutput}" ></Label>
         </StackPanel>
-
     </Grid>
 </Window>

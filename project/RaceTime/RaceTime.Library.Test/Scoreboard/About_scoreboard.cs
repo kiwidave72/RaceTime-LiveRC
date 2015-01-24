@@ -9,14 +9,16 @@ namespace RaceTime.Library.Test.Scoreboard
     public class About_Scoreboard 
     {
 
-        //[TestMethod]
-        //public void announcements_are_raised_during_the_running_of_the_schedule()
-        //{
-        //    var scoreboard = new SerialScoreboard();
+        [TestMethod]
+        public void  scoreboard_text_is_outputed()
+        {
+            var scoreboard = new DebugScoreboard();
 
-        //    scoreboard.Interval = 1000;
-            
-        //    scoreboard.WriteOutput("testing");
-        //}
+            scoreboard.Interval = 1000;
+
+            scoreboard.WriteRaceInfor(1,1,"1","testing");
+
+            Assert.IsTrue(scoreboard.FriendlyOutputText =="testing");
+        }
     }
 }
