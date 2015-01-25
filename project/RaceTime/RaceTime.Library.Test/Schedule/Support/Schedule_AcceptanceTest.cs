@@ -35,8 +35,13 @@ namespace RaceTime.Library.Test.Scoreboard
 
             interactor.AddAnnouncmentToSchedule(new Model.Announcement(ScheduleEventType.Stopped, "Practice Stopped"));
 
-            interactor.Schedule.OnAnnouncement += (sender, e) => raisedAnnouncments.Add(e);
+            interactor.Schedule.OnAnnouncement += Schedule_OnAnnouncement;
             
+        }
+
+        void Schedule_OnAnnouncement(object sender, Model.Announcement announcement, PracticeClass currentPracticeClass)
+        {
+            raisedAnnouncments.Add(announcement);
         }
 
         public void And_these_announcements()
@@ -47,7 +52,7 @@ namespace RaceTime.Library.Test.Scoreboard
 
             interactor.AddAnnouncmentToSchedule(new Model.Announcement(ScheduleEventType.Finished, "Practice Finished"));
 
-            interactor.Schedule.OnAnnouncement += (sender, e) => raisedAnnouncments.Add(e);
+            interactor.Schedule.OnAnnouncement += Schedule_OnAnnouncement;
             
         }
 
@@ -155,7 +160,7 @@ namespace RaceTime.Library.Test.Scoreboard
 
             foreach (var practiceClass in interactor.All())
             {
-                total_time = total_time + (int)practiceClass.Time + (int)interactor.Schedule.Interval;
+                total_time = total_time + (int)practiceClass.Time*60*1000 + (int)interactor.Schedule.Interval;
             }
 
             total_time = total_time * interactor.GetNumberOfRounds();

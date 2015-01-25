@@ -14,10 +14,15 @@ namespace RaceTime.Library.Model.Meeting
     {
         private MeetingClasses _classes = new MeetingClasses();
 
-        private DefaultSchedule _schedule = new DefaultSchedule();
-
-        private String _title;
+        private DefaultSchedule _schedule ;
         
+        private String _title;
+
+        public Meeting(DefaultSchedule schedule)
+        {
+            _schedule = schedule;
+        }
+
         public string Title
         {
             get { return _title; }

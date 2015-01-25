@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Xml.Serialization;
 using RaceTime.Library.Model;
 using RaceTime.Library.Model.Configuration;
@@ -18,7 +19,7 @@ namespace RaceTime.Library.Storage
 
         public ConfigurationStorage()
         {
-            _filename = "configuration.xml";
+            _filename = @"configuration.xml";
         }
 
         public void Load()
@@ -27,6 +28,7 @@ namespace RaceTime.Library.Storage
             
             using (FileStream input = File.OpenRead(_filename))
             {
+                
                 Configuration = (Configuration)reader.Deserialize(input);
             }
         }

@@ -31,7 +31,7 @@ namespace RaceTime.Library.Scoreboard
 
         public void WriteRaceInfor(int round, int heat, string elapsedTime,string name)
         {
-            var serialOutputText = string.Format("{0}:{1}:{2}:0:0", round, heat, elapsedTime);
+            var serialOutputText = string.Format("[{0}:{1}:{2}:0:0]", round, heat, elapsedTime);
 
             FriendlyOutputText = string.Format("Round:{0} Heat:{1} Time:{2} Name:{3}", round, heat, elapsedTime, name); ;
 
@@ -41,11 +41,12 @@ namespace RaceTime.Library.Scoreboard
         private void WriteOutput(string line)
         {
             SerialOutputText = line;
-            
-            if (IsConnected == false)
+
+
+            if (IsConnected == false || _serialPort.IsOpen==false)
                 ConnectPort();
 
-            if(_serialPort!=null)
+            if (_serialPort != null && _serialPort.IsOpen==true)
                 _serialPort.WriteLine(line);
         }
 
@@ -55,12 +56,13 @@ namespace RaceTime.Library.Scoreboard
             try
             {
                 _serialPort = new SerialPort();
+                
                 foreach (string s in SerialPort.GetPortNames())
                 {
                     Debug.WriteLine("   {0}", s);
                 }
 
-                _serialPort.PortName = SerialPort.GetPortNames()[0];
+                _serialPort.PortName = SerialPort.GetPortNames()[1];
                 _serialPort.BaudRate = 9600;
                 _serialPort.Parity = Parity.None;
                 _serialPort.DataBits = 8;

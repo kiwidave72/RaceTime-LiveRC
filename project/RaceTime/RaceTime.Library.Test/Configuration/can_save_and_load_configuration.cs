@@ -34,6 +34,14 @@ namespace RaceTime.Library.Test.Configuration
             Then_the_name_is("This is a test Configuration");
         }
 
+        [TestMethod]
+        public void For_When_I_can_save_the_configuration_with_the_schedule_set_to_a_file()
+        {
+            Given_a_configuration_with_a_schedule();
 
+            When_I_save();
+
+            Then_there_are_no_errors();
+        }
     }
 }

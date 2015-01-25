@@ -10,16 +10,24 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
 {
     public class PracticeInteractor
     {
-        private  Model.Meeting.Meeting _meeting = new Model.Meeting.Meeting();
+        private  Model.Meeting.Meeting _meeting = new Model.Meeting.Meeting(new DefaultSchedule(null));
+
+        public IScoreboard Scoreboard
+        {
+            get { return _scoreboard; }
+            set { _scoreboard = value; }
+        }
+
+        public DefaultSchedule Schedule { get; private set; }
+
 
         public void SetTitle(string title)
         {
             _meeting.Title = title;
         }
 
-        public DefaultSchedule Schedule {
-            get { return _meeting.Schedule; }
-        }
+        private IScoreboard _scoreboard;
+
 
         public void SetNumberOfRounds(int number)
         {
@@ -67,9 +75,9 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
         }
 
 
-        public void RunSchedule(IScoreboard _scoreboard, long interval)
+        public void RunSchedule( IScoreboard scoreboard,long interval)
         {
-            _meeting.Schedule.Scoreboard = _scoreboard;
+            _meeting = new Model.Meeting.Meeting(new DefaultSchedule(scoreboard));
             _meeting.Schedule.Interval = interval;
             
             _meeting.Schedule.Run();

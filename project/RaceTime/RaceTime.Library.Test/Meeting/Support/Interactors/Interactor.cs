@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using RaceTime.Library.Model;
 using RaceTime.Library.Model.Race;
+using RaceTime.Library.Model.Schedule;
 
 namespace RaceTime.Library.Test.Meeting.Support
 {
     internal class Interactor
     {
-        private static Model.Meeting.Meeting _meeting = new Model.Meeting.Meeting();
+        private static Model.Meeting.Meeting _meeting = new Model.Meeting.Meeting(new DefaultSchedule(null));
 
         public static List<RaceClass> FetchAll()
         {

@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Xml.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RaceTime.Library.Model.Schedule;
 using RaceTime.Library.Storage;
 
 namespace RaceTime.Library.Test.Configuration.Support
@@ -54,6 +55,17 @@ namespace RaceTime.Library.Test.Configuration.Support
 
             Configuration.Name = "This is a test Configuration";
         }
+
+        protected void Given_a_configuration_with_a_schedule()
+        {
+            Configuration = new Model.Configuration.Configuration();
+
+            Configuration.Name = "This is a test Configuration";
+
+            Configuration.Schedule = new DefaultSchedule(null);
+            
+        }
+
 
         protected void When_I_read()
         {

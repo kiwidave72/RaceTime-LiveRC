@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>This is a test Configuration</Name>
+  <Schedule>
+    <Interval>10000</Interval>
+    <CurrentRound>1</CurrentRound>
+    <NumberOfRound>5</NumberOfRound>
+    <Schedule>
+      <PracticeClass>
+        <Name>Super Stock Touring</Name>
+        <Time>3</Time>
+        <Status>Ready</Status>
+        <HeatNumber>1</HeatNumber>
+      </PracticeClass>
+      <PracticeClass>
+        <Name>Modified Touring</Name>
+        <Time>3</Time>
+        <Status>Ready</Status>
+        <HeatNumber>2</HeatNumber>
+      </PracticeClass>
+      <PracticeClass>
+        <Name>Pro10 and Pro12</Name>
+        <Time>3</Time>
+        <Status>Ready</Status>
+        <HeatNumber>3</HeatNumber>
+      </PracticeClass>
+      <PracticeClass>
+        <Name>Formula One</Name>
+        <Time>3</Time>
+        <Status>Ready</Status>
+        <HeatNumber>4</HeatNumber>
+      </PracticeClass>
+      <PracticeClass>
+        <Name>Mini's</Name>
+        <Time>3</Time>
+        <Status>Ready</Status>
+        <HeatNumber>5</HeatNumber>
+      </PracticeClass>
+      <PracticeClass>
+        <Name>Under Twelves</Name>
+        <Time>3</Time>
+        <Status>Ready</Status>
+        <HeatNumber>6</HeatNumber>
+      </PracticeClass>
+    </Schedule>
+    <Announcements>
+      <Announcement>
+        <EventType>Started</EventType>
+        <Text>Practice Started for Heat [PracticeClass.HeatNumber] , [PracticeClass.Name]</Text>
+        <Time>0</Time>
+      </Announcement>
+      <Announcement>
+        <EventType>Finished</EventType>
+        <Text>Practice Finished for Heat [PracticeClass.HeatNumber] , [PracticeClass.Name]</Text>
+        <Time>0</Time>
+      </Announcement>
+      <Announcement>
+        <EventType>Next</EventType>
+        <Text>Next up Heat [PracticeClass.HeatNumber] , [PracticeClass.Name]</Text>
+        <Time>1</Time>
+      </Announcement>
+      <Announcement>
+        <EventType>Repeatable</EventType>
+        <Text>[Schedule.Remaining] minutes remaining</Text>
+        <Time>1</Time>
+      </Announcement>
+    </Announcements>
+    <IsScheduleRunning>false</IsScheduleRunning>
+    <IntervalClock>
+      <HasStarted>false</HasStarted>
+      <HasElapsed>false</HasElapsed>
+    </IntervalClock>
+    <NextPracticeAnnoucementClock>
+      <HasStarted>false</HasStarted>
+      <HasElapsed>false</HasElapsed>
+    </NextPracticeAnnoucementClock>
+  </Schedule>
+</Configuration>

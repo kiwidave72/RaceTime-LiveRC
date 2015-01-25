@@ -13,6 +13,10 @@ namespace RaceTime.Library.Model.Practice
         private long _time;
         private string _status;
 
+        public DateTime ScheduledTime { get; set; }
+
+        public int HeatNumber { get; set; }
+        
         public string Name
         {
             get { return _name; }
@@ -31,15 +35,21 @@ namespace RaceTime.Library.Model.Practice
             set { _status = value;}
         }
 
-        public int HeatNumber { get; set; }
+        public PracticeClass()
+        {
+
+        }
 
         public PracticeClass(string name, long time)
         {
+
             Name = name;
-            Time = time;
             Status = "Ready";
+            Time = time;
 
         }
 
     }
+
+    
 }
