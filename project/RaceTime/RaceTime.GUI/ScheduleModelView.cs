@@ -25,7 +25,7 @@ namespace RaceTime.GUI
 
         private DefaultSchedule _model ;
 
-        private IScoreboard _scoreboard;
+       // private IScoreboard _scoreboard;
 
         private SpeechSynthesizer _speechSynthesizer = new SpeechSynthesizer();
 
@@ -46,11 +46,13 @@ namespace RaceTime.GUI
         private long _practiceTime;
         private string _raceTimeRemainingTimeString;
         private PracticeClass _nextClass;
+        private string[] _serialPortNames;
+        private string _serialPortName;
 
 
         public ScheduleModelView()
         {
-            _scoreboard = new SerialScoreboard();
+            //_scoreboard = new SerialScoreboard();
 
             ConfigurationStorage store = new ConfigurationStorage();
 
@@ -75,10 +77,7 @@ namespace RaceTime.GUI
 
             //config.Schedule = Model;
 
-           
-
-
-            //Model.NumberOfRound = 2;
+           //Model.NumberOfRound = 2;
             //Model.Interval = 10000;
 
             //Model.Add(new PracticeClass("Super Stock Touring", 1000 * 20));
@@ -221,6 +220,28 @@ namespace RaceTime.GUI
             }
         }
 
+        public string[] SerialPortNames
+        {
+            get { return _serialPortNames; }
+            set
+            {
+                _serialPortNames = value;
+                OnPropertyChanged("SerialPortNames");
+
+            }
+        }
+
+        public string SerialPortName
+        {
+            get { return _serialPortName; }
+            set
+            {
+                _serialPortName = value;
+                OnPropertyChanged("SerialPortName");
+                Model.SetScoreboardPort(_serialPortName);
+
+            }
+        }
 
         public ICommand StartScheduleCommand
         {
@@ -276,6 +297,7 @@ namespace RaceTime.GUI
 
             NextClass = Model.NextPracticeClass;
 
+            SerialPortNames = Model.SerialPortNames;
 
             Schedule = new ObservableCollection<PracticeClass>(Model.Schedule);
 

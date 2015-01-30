@@ -61,6 +61,8 @@ namespace RaceTime.Library.Model.Schedule
          [NonSerialized()]
         private int _numberOfRounds;
 
+         private string[] _serialPortNames;
+
          public int CurrentRound
         {
             get { return _currentRound; }
@@ -129,9 +131,18 @@ namespace RaceTime.Library.Model.Schedule
             set { _nextPracticeAnnoucementClock = value; }
         }
 
+         public string[] SerialPortNames
+         {
+             get { return _serialPortNames; } 
+             set { _serialPortNames = value; }
+         }
+
         public DefaultSchedule()
         {
             _scoreboard = new SerialScoreboard();
+            SerialPortNames = _scoreboard.SerialPortNames;
+            //_scoreboard.PortName = "COM2";// SerialPortNames[0];
+
         }
 
 
@@ -230,6 +241,8 @@ namespace RaceTime.Library.Model.Schedule
                     return;
                 }
 
+                _scoreboard.ClearDisplay();
+
                 IntervalClock.SetRaceTime(Interval);
 
                 IntervalClock.OnElapsedHasExpired += IntervalClock_OnElapsedHasExpired;
@@ -261,6 +274,8 @@ namespace RaceTime.Library.Model.Schedule
              RaceClock.SetRaceTime(CurrentPracticeClass.Time * 60 * 1000);
 
              SetRepeatableAnnoucementClock();
+
+             _scoreboard.ClearDisplay();
          }
 
          private void SetRepeatableAnnoucementClock()
@@ -272,6 +287,7 @@ namespace RaceTime.Library.Model.Schedule
 
          private void StartSchedule()
         {
+
             if (ScoreboardNotificationTimer == null && _scoreboard != null)
             {
                 ScoreboardNotificationTimer = new Timer(_scoreboard.Interval);
@@ -453,6 +469,11 @@ namespace RaceTime.Library.Model.Schedule
          public IEnumerable<Exception> GetScoreboardErrors()
          {
              return _scoreboard.Errors;
+         }
+
+         public void SetScoreboardPort(string serialPortName)
+         {
+             _scoreboard.PortName = serialPortName;
          }
     }
 

@@ -29,11 +29,17 @@ namespace RaceTime.GUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ScheduleModelView model = new ScheduleModelView();
+            model = new ScheduleModelView();
             
             ((Window) sender).DataContext = model;
 
          
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            model.SerialPortName = model.SerialPortNames[((ListBox) sender).SelectedIndex];
+
         }
 
      
