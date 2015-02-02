@@ -32,6 +32,7 @@ namespace RaceTime.GUI
         private Timer _timer;
         private string _elapsedTimeString;
 
+        private DelegateCommand _saveCommand;
         private DelegateCommand _stopScheduleCommand;
         private DelegateCommand _startScheduleCommand;
         private string _annoucementText;
@@ -48,6 +49,8 @@ namespace RaceTime.GUI
         private PracticeClass _nextClass;
         private string[] _serialPortNames;
         private string _serialPortName;
+        private long _interval;
+        private int _currentHeat;
 
 
         public ScheduleModelView()
@@ -60,10 +63,13 @@ namespace RaceTime.GUI
 
             _model = store.Configuration.Schedule;
             
+
+
             //_model = new DefaultSchedule(_scoreboard);
             
             _startScheduleCommand = new DelegateCommand(StartSchedule);
             _stopScheduleCommand = new DelegateCommand(StopSchedule);
+            _saveCommand = new DelegateCommand(Save);
 
             _speechSynthesizer.SpeakCompleted += _speechSynthesizer_SpeakCompleted;
 
@@ -77,7 +83,7 @@ namespace RaceTime.GUI
 
             //config.Schedule = Model;
 
-           //Model.NumberOfRound = 2;
+           //Model.NumberOfRounds = 2;
             //Model.Interval = 10000;
 
             //Model.Add(new PracticeClass("Super Stock Touring", 1000 * 20));
@@ -132,6 +138,18 @@ namespace RaceTime.GUI
                 OnPropertyChanged("IntervalElapsedTime");
             }
         }
+
+        public long Interval
+        {
+            get { return _interval; }
+            set
+            {
+                _interval = value;
+                
+                OnPropertyChanged("Interval");
+            }
+        }
+
 
         public string ElapsedTimeString
         {
@@ -243,6 +261,12 @@ namespace RaceTime.GUI
             }
         }
 
+        public ICommand SaveCommand
+        {
+            get { return _saveCommand; }
+        }
+
+
         public ICommand StartScheduleCommand
         {
             get { return _startScheduleCommand; }
@@ -276,7 +300,12 @@ namespace RaceTime.GUI
 
         private void UpdateGUI()
         {
+           // SerialPortName = Model.SerialPortName;
 
+            Interval = Model.Interval;
+
+            CurrentHeat = Model.CurrentHeat;
+            
             ElapsedTimeString = Model.RaceClock.ElapsedTimeMinutesSecondsMillisecondsString;
 
             PracticeTime = Model.RaceClock.RaceTime  ;
@@ -291,7 +320,7 @@ namespace RaceTime.GUI
 
             CurrentRound = Model.CurrentRound;
 
-            NumberOfRounds = Model.NumberOfRound;
+            NumberOfRounds = Model.NumberOfRounds;
 
             CurrentClass = Model.CurrentPracticeClass;
 
@@ -302,6 +331,17 @@ namespace RaceTime.GUI
             Schedule = new ObservableCollection<PracticeClass>(Model.Schedule);
 
             ScoreboardErrors = new ObservableCollection<Exception>(Model.GetScoreboardErrors());
+        }
+
+        public int CurrentHeat
+        {
+            get { return _currentHeat; }
+            set
+            {
+                _currentHeat = value;
+                OnPropertyChanged("CurrentHeat");
+
+            }
         }
 
         public PracticeClass NextClass

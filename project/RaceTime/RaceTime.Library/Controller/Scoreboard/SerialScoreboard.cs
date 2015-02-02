@@ -56,6 +56,8 @@ namespace RaceTime.Library.Scoreboard
             SerialOutputText = line;
 
 
+            Debug.WriteLine(SerialOutputText);
+
             if (IsConnected == false || _serialPort.IsOpen==false)
                 ConnectPort();
 

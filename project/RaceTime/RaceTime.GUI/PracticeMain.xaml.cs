@@ -42,6 +42,45 @@ namespace RaceTime.GUI
 
         }
 
-     
+        private void TextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                return;
+            }
+            model.Model.Interval = Convert.ToInt32(((TextBox)sender).Text);
+        }
+
+        private void TextBox_SelectionChanged_NumberOfRounds(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                return;
+            }
+
+            model.Model.NumberOfRounds = Convert.ToInt32(((TextBox)sender).Text);
+        }
+
+        private void TextBox_SelectionChanged_CurrentRound(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                return;
+            }
+
+            model.Model.CurrentRound= Convert.ToInt32(((TextBox)sender).Text);
+        }
+
+
+        private void TextBox_SelectionChanged_CurrentHeat(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                return;
+            }
+
+            model.Model.SetCurrentPracticeClassTo(Convert.ToInt32(((TextBox)sender).Text));
+            
+        }
     }
 }

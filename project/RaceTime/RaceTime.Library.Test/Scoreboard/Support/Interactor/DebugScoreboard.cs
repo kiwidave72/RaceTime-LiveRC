@@ -11,6 +11,8 @@ namespace RaceTime.Library.Test.Scoreboard
 
         public string FriendlyOutputText { get; set; }
         public string SerialOutputText { get; set; }
+        public string[] SerialPortNames { get; set; }
+        public string PortName { get; set; }
 
         public List<Exception> Errors { get; private set; }
 
@@ -23,6 +25,11 @@ namespace RaceTime.Library.Test.Scoreboard
         {
             get { return _interval; }
             set { _interval = value; }
+        }
+
+        public void ClearDisplay()
+        {
+            throw new NotImplementedException();
         }
 
         public void WriteRaceInfor(int round, int heat, string elapsedTime, string name)

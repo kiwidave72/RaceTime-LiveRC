@@ -32,7 +32,14 @@ namespace RaceTime.Library.Model.Schedule
 
         private List<Announcement> _announcements = new List<Announcement>();
 
-        public long Interval { get; set; }
+        public long Interval {
+            get { return _interval; }
+            set
+            {
+                _interval = value ;
+                CalculateScheduleTimes();
+            } 
+        }
          
         [NonSerialized()]
         private RaceClock _raceClock = new RaceClock();
@@ -59,9 +66,12 @@ namespace RaceTime.Library.Model.Schedule
         private int _currentRound = 1;
 
          [NonSerialized()]
-        private int _numberOfRounds;
+        private int _numberOfRoundses;
 
          private string[] _serialPortNames;
+         private string _serialPortName;
+         private long _interval;
+         private int _currentHeat;
 
          public int CurrentRound
         {
@@ -69,10 +79,10 @@ namespace RaceTime.Library.Model.Schedule
             set { _currentRound = value; }
         }
 
-        public int NumberOfRound
+        public int NumberOfRounds
         {
-            get { return _numberOfRounds; }
-            set { _numberOfRounds = value; }
+            get { return _numberOfRoundses; }
+            set { _numberOfRoundses = value; }
         }
 
         private Timer ScoreboardNotificationTimer
@@ -137,11 +147,23 @@ namespace RaceTime.Library.Model.Schedule
              set { _serialPortNames = value; }
          }
 
-        public DefaultSchedule()
+         public string SerialPortName
+         {
+             get { return _serialPortName; }
+             set { _serialPortName = value; }
+         }
+
+         public int CurrentHeat {
+             get { return _currentHeat; }
+             set { _currentHeat = value; } 
+         }
+
+
+         public DefaultSchedule()
         {
             _scoreboard = new SerialScoreboard();
             SerialPortNames = _scoreboard.SerialPortNames;
-            //_scoreboard.PortName = "COM2";// SerialPortNames[0];
+           // _scoreboard.PortName = SerialPortName;// "COM2";// SerialPortNames[0];
 
         }
 
@@ -241,7 +263,7 @@ namespace RaceTime.Library.Model.Schedule
                     return;
                 }
 
-                _scoreboard.ClearDisplay();
+                ClearScoreboard();
 
                 IntervalClock.SetRaceTime(Interval);
 
@@ -267,14 +289,20 @@ namespace RaceTime.Library.Model.Schedule
          {
              CalculateScheduleTimes();
 
-             SetCurrentPracticeClass();
+             SetCurrentPracticeClassFromSchedule();
 
              SetNextPracticeClass();
+
 
              RaceClock.SetRaceTime(CurrentPracticeClass.Time * 60 * 1000);
 
              SetRepeatableAnnoucementClock();
 
+             ClearScoreboard();
+         }
+
+         private void ClearScoreboard()
+         {
              _scoreboard.ClearDisplay();
          }
 
@@ -308,8 +336,8 @@ namespace RaceTime.Library.Model.Schedule
             RepeatableAnnoncementClock.OnElapsedHasExpired += RepeatableAnnoncementClock_OnElapsedHasExpired;
 
             RepeatableAnnoncementClock.Start();
-             
-            SetCurrentPracticeClass();
+
+            SetCurrentPracticeClassFromSchedule();
              
             CurrentPracticeClass.Status = "Running";
 
@@ -341,7 +369,7 @@ namespace RaceTime.Library.Model.Schedule
 
          private void SetNextPracticeClass()
          {
-             _nextPracticeClass = Schedule.FirstOrDefault(i => i.Status == "Ready");
+             _nextPracticeClass = Schedule.FirstOrDefault(i => i.Status == "Ready" && i.HeatNumber > CurrentHeat);
          }
 
          private void SetUpTimedAnnoucement()
@@ -368,7 +396,7 @@ namespace RaceTime.Library.Model.Schedule
         {
             IsScheduleRunning = false;
 
-            if (NumberOfRound == CurrentRound &&  Schedule.FirstOrDefault(i => i.Status == "Ready")== null)
+            if (NumberOfRounds == CurrentRound &&  Schedule.FirstOrDefault(i => i.Status == "Ready")== null)
             {
                 CalculateScheduleTimes();
                 return true;
@@ -378,26 +406,62 @@ namespace RaceTime.Library.Model.Schedule
 
         }
 
-         private void SetCurrentPracticeClass()
+        public void SetCurrentPracticeClassTo(Int32 heatNumber)
         {
-            _currentPracticeClass = Schedule.FirstOrDefault(i => i.Status == "Ready");
-
-            if (_currentPracticeClass == null)
+            foreach (PracticeClass classes in Schedule)
             {
-                CurrentRound++;
-                foreach (var practiceClass in Schedule)
-                {
-                    practiceClass.Status = "Ready";
-                }
-
-                _currentPracticeClass = Schedule.FirstOrDefault(i => i.Status == "Ready");
+                classes.Status = "Ready";
             }
+
+            var practiceClass = Schedule.FirstOrDefault(i => i.HeatNumber == heatNumber);
+
+            if (practiceClass == null)
+                return;
+
+            foreach (PracticeClass classes in Schedule.Where(i=>i.HeatNumber < heatNumber))
+            {
+                classes.Status = "Finished";
+            }
+
+            SetCurrentPracticeClassFromSchedule();
+
+            SetNextPracticeClass();
         }
+
+         private void SetCurrentPracticeClassFromSchedule()
+         {
+            
+             _currentPracticeClass = Schedule.FirstOrDefault(i => i.Status == "Ready");
+
+             SetCurrentPracticeClass();
+
+         }
+
+         private void SetCurrentPracticeClass()
+         {
+
+
+             if (_currentPracticeClass == null)
+             {
+                 CurrentRound++;
+                 foreach (var practiceClass in Schedule)
+                 {
+                     practiceClass.Status = "Ready";
+                 }
+
+                 _currentPracticeClass = Schedule.FirstOrDefault(i => i.Status == "Ready");
+             }
+
+            
+
+             CurrentHeat = _currentPracticeClass.HeatNumber;
+
+         }
 
 
          private void UpdateScoreboard()
         {
-            if(_scoreboard !=null)
+            if(_scoreboard !=null && RaceClock.HasStarted)
                 _scoreboard.WriteRaceInfor(CurrentRound, CurrentPracticeClass.HeatNumber, RaceClock.ElapsedTimeMinutesSecondsString, CurrentPracticeClass.Name);
         }
 

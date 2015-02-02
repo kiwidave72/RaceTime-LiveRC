@@ -31,12 +31,12 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
 
         public void SetNumberOfRounds(int number)
         {
-            _meeting.Schedule.NumberOfRound = number;
+            _meeting.Schedule.NumberOfRounds = number;
         }
 
         public int GetNumberOfRounds()
         {
-            return _meeting.Schedule.NumberOfRound ;
+            return _meeting.Schedule.NumberOfRounds ;
         }
         
         public void AddToSchedule(PracticeClass practice)

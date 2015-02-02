@@ -1,57 +1,62 @@
 <?xml version="1.0"?>
 <Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Name>This is a test Configuration</Name>
   <Schedule>
-    <Interval>10000</Interval>
+    <Interval>60000</Interval>
     <CurrentRound>1</CurrentRound>
-    <NumberOfRound>5</NumberOfRound>
+    <NumberOfRounds>3</NumberOfRounds>
     <Schedule>
       <PracticeClass>
-        <Name>Super Stock Touring</Name>
-        <Time>3</Time>
-        <Status>Ready</Status>
+        <ScheduledTime>2015-02-01T11:09:40.2280202+13:00</ScheduledTime>
         <HeatNumber>1</HeatNumber>
+        <Name>Super Stock Touring</Name>
+        <Time>20</Time>
+        <Status>Ready</Status>
       </PracticeClass>
       <PracticeClass>
-        <Name>Modified Touring</Name>
-        <Time>3</Time>
-        <Status>Ready</Status>
+        <ScheduledTime>2015-02-01T11:12:50.2280202+13:00</ScheduledTime>
         <HeatNumber>2</HeatNumber>
+        <Name>Modified Touring</Name>
+        <Time>20</Time>
+        <Status>Ready</Status>
       </PracticeClass>
       <PracticeClass>
-        <Name>Pro10 and Pro12</Name>
-        <Time>3</Time>
-        <Status>Ready</Status>
+        <ScheduledTime>2015-02-01T11:16:00.2280202+13:00</ScheduledTime>
         <HeatNumber>3</HeatNumber>
+        <Name>Pro10 and Pro12</Name>
+        <Time>20</Time>
+        <Status>Ready</Status>
       </PracticeClass>
       <PracticeClass>
-        <Name>Formula One</Name>
-        <Time>3</Time>
-        <Status>Ready</Status>
+        <ScheduledTime>2015-02-01T11:19:10.2280202+13:00</ScheduledTime>
         <HeatNumber>4</HeatNumber>
+        <Name>Formula One</Name>
+        <Time>20</Time>
+        <Status>Ready</Status>
       </PracticeClass>
       <PracticeClass>
-        <Name>Mini's</Name>
-        <Time>3</Time>
-        <Status>Ready</Status>
+        <ScheduledTime>2015-02-01T11:22:20.2280202+13:00</ScheduledTime>
         <HeatNumber>5</HeatNumber>
+        <Name>Mini's</Name>
+        <Time>20</Time>
+        <Status>Ready</Status>
       </PracticeClass>
       <PracticeClass>
-        <Name>Under Twelves</Name>
-        <Time>3</Time>
-        <Status>Ready</Status>
+        <ScheduledTime>2015-02-01T11:25:30.2280202+13:00</ScheduledTime>
         <HeatNumber>6</HeatNumber>
+        <Name>Under Twelves</Name>
+        <Time>20</Time>
+        <Status>Ready</Status>
       </PracticeClass>
     </Schedule>
     <Announcements>
       <Announcement>
         <EventType>Started</EventType>
-        <Text>Practice Started for Heat [PracticeClass.HeatNumber] , [PracticeClass.Name]</Text>
+        <Text>Track is now Open. Practice Started for Heat [PracticeClass.HeatNumber] , [PracticeClass.Name]</Text>
         <Time>0</Time>
       </Announcement>
       <Announcement>
         <EventType>Finished</EventType>
-        <Text>Practice Finished for Heat [PracticeClass.HeatNumber] , [PracticeClass.Name]</Text>
+        <Text>Practice Finished for Heat [PracticeClass.HeatNumber] , [PracticeClass.Name]. Drivers Finish your lap, Track is now Closed</Text>
         <Time>0</Time>
       </Announcement>
       <Announcement>
@@ -70,9 +75,16 @@
       <HasStarted>false</HasStarted>
       <HasElapsed>false</HasElapsed>
     </IntervalClock>
+    <RepeatableAnnoncementClock>
+      <HasStarted>false</HasStarted>
+      <HasElapsed>false</HasElapsed>
+    </RepeatableAnnoncementClock>
     <NextPracticeAnnoucementClock>
       <HasStarted>false</HasStarted>
       <HasElapsed>false</HasElapsed>
     </NextPracticeAnnoucementClock>
+    <SerialPortNames>
+      <string>COM1</string>
+    </SerialPortNames>
   </Schedule>
 </Configuration>
