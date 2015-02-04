@@ -18,7 +18,7 @@ namespace RaceTime.Library.Test.Scoreboard
 
             scoreboard.WriteRaceInfor(1,1,"1","testing");
 
-            Assert.IsTrue(scoreboard.FriendlyOutputText =="testing");
+            Assert.IsTrue(scoreboard.FriendlyOutputText == "Round:1 Heat:1 Time:1 Name:testing");
         }
     }
 }

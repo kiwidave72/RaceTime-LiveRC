@@ -18,7 +18,9 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
             set { _scoreboard = value; }
         }
 
-        public DefaultSchedule Schedule { get; private set; }
+        public DefaultSchedule Schedule {
+            get { return _meeting.Schedule; } 
+        }
 
 
         public void SetTitle(string title)
@@ -77,7 +79,8 @@ namespace RaceTime.Library.Test.Practice.Support.Interactor
 
         public void RunSchedule( IScoreboard scoreboard,long interval)
         {
-            _meeting = new Model.Meeting.Meeting(new DefaultSchedule(scoreboard));
+            //_meeting = new Model.Meeting.Meeting(new DefaultSchedule(scoreboard));
+           
             _meeting.Schedule.Interval = interval;
             
             _meeting.Schedule.Run();

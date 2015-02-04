@@ -72,7 +72,7 @@ namespace RaceTime.Library.Test.Configuration.Support
             _error = null;
             try
             {
-                _configurationStorage.Load();
+                _configurationStorage.Load("Configuration.xml");
                 Configuration = _configurationStorage.Configuration;
             }
             catch (Exception ex)

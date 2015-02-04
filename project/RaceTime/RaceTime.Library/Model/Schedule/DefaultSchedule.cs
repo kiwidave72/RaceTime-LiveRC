@@ -162,8 +162,8 @@ namespace RaceTime.Library.Model.Schedule
          public DefaultSchedule()
         {
             _scoreboard = new SerialScoreboard();
-            SerialPortNames = _scoreboard.SerialPortNames;
-           // _scoreboard.PortName = SerialPortName;// "COM2";// SerialPortNames[0];
+
+             SerialPortNames = _scoreboard.SerialPortNames;
 
         }
 
@@ -176,12 +176,14 @@ namespace RaceTime.Library.Model.Schedule
         public void Add(PracticeClass practice)
         {
             practice.HeatNumber = _schedule.Count() +1 ;
+            
             _schedule.Add(practice);
         }
 
         public void Change(int heatNumber, string name)
         {
             var practiceClass = Schedule.SingleOrDefault(i => i.HeatNumber == heatNumber);
+          
             if (practiceClass != null)
             {
                 practiceClass.Name = name;
@@ -205,6 +207,7 @@ namespace RaceTime.Library.Model.Schedule
             AnnouncementHandler handler = OnAnnouncement;
 
             Debug.WriteLine(announcement.Text);
+            
             if (handler != null) handler(this, announcement,currentPracticeClass);
         }
 
@@ -227,6 +230,7 @@ namespace RaceTime.Library.Model.Schedule
          private void CalculateScheduleTimes()
          {
              DateTime? startTime =null ;
+            
              PracticeClass lastClass = null;
 
              foreach (var practiceClass in Schedule)
@@ -244,10 +248,12 @@ namespace RaceTime.Library.Model.Schedule
                  else
                  {
                      startTime = lastClass.ScheduledTime;
+             
                      scheduledTime = startTime.Value.AddSeconds((lastClass.Time * 60) + (Interval / 1000));
                  }
                  
                  practiceClass.ScheduledTime = scheduledTime.Value;
+
                  lastClass = practiceClass;
              }
 
@@ -303,14 +309,25 @@ namespace RaceTime.Library.Model.Schedule
 
          private void ClearScoreboard()
          {
-             _scoreboard.ClearDisplay();
+             if (_scoreboard != null)
+             {
+                 _scoreboard.ClearDisplay();
+             }
          }
 
          private void SetRepeatableAnnoucementClock()
          {
-             var repeatableAnnouncement = Announcements.First(i => i.EventType == ScheduleEventType.Repeatable);
+             var repeatableAnnouncement = Announcements.SingleOrDefault(i => i.EventType == ScheduleEventType.Repeatable);
+
+             if (repeatableAnnouncement == null)
+                 return;
 
              RepeatableAnnoncementClock.SetRaceTime(repeatableAnnouncement.Time*60*1000);
+
+             RepeatableAnnoncementClock.OnElapsedHasExpired += RepeatableAnnoncementClock_OnElapsedHasExpired;
+
+             RepeatableAnnoncementClock.Start();
+
          }
 
          private void StartSchedule()
@@ -333,9 +350,6 @@ namespace RaceTime.Library.Model.Schedule
 
              SetRepeatableAnnoucementClock();
 
-            RepeatableAnnoncementClock.OnElapsedHasExpired += RepeatableAnnoncementClock_OnElapsedHasExpired;
-
-            RepeatableAnnoncementClock.Start();
 
             SetCurrentPracticeClassFromSchedule();
              
@@ -375,8 +389,11 @@ namespace RaceTime.Library.Model.Schedule
          private void SetUpTimedAnnoucement()
         {
 
-            var annoucment = Announcements.Single(i => i.EventType == ScheduleEventType.Next);
-            
+            var annoucment = Announcements.SingleOrDefault(i => i.EventType == ScheduleEventType.Next);
+
+             if (annoucment == null)
+                 return;
+
             NextPracticeAnnoucementClock = new RaceClock();
 
             NextPracticeAnnoucementClock.SetRaceTime(CurrentPracticeClass.Time * 60 * 1000 - (annoucment.Time * 60 * 1000));

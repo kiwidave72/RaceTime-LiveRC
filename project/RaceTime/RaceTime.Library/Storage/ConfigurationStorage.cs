@@ -22,11 +22,11 @@ namespace RaceTime.Library.Storage
             _filename = @"configuration.xml";
         }
 
-        public void Load()
+        public void Load(string filename)
         {
             XmlSerializer reader = new XmlSerializer(typeof (Configuration));
-            
-            using (FileStream input = File.OpenRead(_filename))
+
+            using (FileStream input = File.OpenRead(filename))
             {
                 
                 Configuration = (Configuration)reader.Deserialize(input);

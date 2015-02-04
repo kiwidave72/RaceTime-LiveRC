@@ -49,6 +49,7 @@
                 <StackPanel Margin="5,29,5,0">
                     <Button>Edit Practice Sessions</Button>
                     <Button>Edit Announcements</Button>
+                <Button Command="{Binding OpenCommand}">Open</Button>
                 <Button Command="{Binding SaveCommand}">Save</Button>
             </StackPanel>
             </StackPanel>

@@ -52,6 +52,9 @@ namespace RaceTime.Library.Test.Scoreboard
 
             interactor.AddAnnouncmentToSchedule(new Model.Announcement(ScheduleEventType.Finished, "Practice Finished"));
 
+           // interactor.AddAnnouncmentToSchedule(new Model.Announcement(ScheduleEventType.Next, "Next Up"));
+
+
             interactor.Schedule.OnAnnouncement += Schedule_OnAnnouncement;
             
         }
@@ -80,9 +83,14 @@ namespace RaceTime.Library.Test.Scoreboard
 
             interactor.SetTitle("test");
 
-            interactor.AddToSchedule(new PracticeClass("Practice 1", 1000 * 3));
+            //interactor.AddToSchedule(new PracticeClass("Practice 1", 1000 * 3));
 
-            interactor.AddToSchedule(new PracticeClass("Practice 2", 1000 * 3));
+            //interactor.AddToSchedule(new PracticeClass("Practice 2", 1000 * 3));
+
+            interactor.AddToSchedule(new PracticeClass("Practice 1", 1));
+
+            interactor.AddToSchedule(new PracticeClass("Practice 2", 1));
+
         }
 
         protected void Given_two_quick_practice_races()
@@ -91,9 +99,9 @@ namespace RaceTime.Library.Test.Scoreboard
 
             interactor.SetTitle("test");
 
-            interactor.AddToSchedule(new PracticeClass("Practice 1", 2000));
+            interactor.AddToSchedule(new PracticeClass("Practice 1", 1));
 
-            interactor.AddToSchedule(new PracticeClass("Practice 2", 2000));
+            interactor.AddToSchedule(new PracticeClass("Practice 2", 1));
 
             interactor.SetNumberOfRounds(1);
 
@@ -165,6 +173,8 @@ namespace RaceTime.Library.Test.Scoreboard
 
             total_time = total_time * interactor.GetNumberOfRounds();
 
+            Debug.WriteLine(total_time / 60 / 1000);
+
             return total_time ;
         }
 
@@ -232,7 +242,7 @@ namespace RaceTime.Library.Test.Scoreboard
 
         protected static void And_wait_for_the_interval()
         {
-            Thread.Sleep(1500);
+            Thread.Sleep(4000);
         }
     }
 }

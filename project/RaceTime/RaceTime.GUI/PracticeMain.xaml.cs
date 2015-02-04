@@ -44,7 +44,7 @@ namespace RaceTime.GUI
 
         private void TextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            if (string.IsNullOrEmpty(((TextBox)sender).Text) || model.Model == null)
             {
                 return;
             }
@@ -53,7 +53,7 @@ namespace RaceTime.GUI
 
         private void TextBox_SelectionChanged_NumberOfRounds(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            if (string.IsNullOrEmpty(((TextBox)sender).Text) || model.Model==null)
             {
                 return;
             }
@@ -63,7 +63,7 @@ namespace RaceTime.GUI
 
         private void TextBox_SelectionChanged_CurrentRound(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            if (string.IsNullOrEmpty(((TextBox)sender).Text) || model.Model==null)
             {
                 return;
             }
@@ -74,7 +74,7 @@ namespace RaceTime.GUI
 
         private void TextBox_SelectionChanged_CurrentHeat(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            if (string.IsNullOrEmpty(((TextBox)sender).Text) || model.Model==null)
             {
                 return;
             }

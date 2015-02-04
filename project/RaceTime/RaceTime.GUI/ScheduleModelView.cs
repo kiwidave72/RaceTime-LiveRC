@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Win32;
 using RaceTime.Library.Annotations;
 using RaceTime.Library.Controller.Scoreboard;
 using RaceTime.Library.Model;
@@ -33,6 +34,8 @@ namespace RaceTime.GUI
         private string _elapsedTimeString;
 
         private DelegateCommand _saveCommand;
+        private DelegateCommand _openCommand;
+        
         private DelegateCommand _stopScheduleCommand;
         private DelegateCommand _startScheduleCommand;
         private string _annoucementText;
@@ -55,61 +58,55 @@ namespace RaceTime.GUI
 
         public ScheduleModelView()
         {
-            //_scoreboard = new SerialScoreboard();
-
-            ConfigurationStorage store = new ConfigurationStorage();
-
-            store.Load();
-
-            _model = store.Configuration.Schedule;
-            
-
-
-            //_model = new DefaultSchedule(_scoreboard);
             
             _startScheduleCommand = new DelegateCommand(StartSchedule);
-            _stopScheduleCommand = new DelegateCommand(StopSchedule);
-            _saveCommand = new DelegateCommand(Save);
 
+            _stopScheduleCommand = new DelegateCommand(StopSchedule);
+            
+            _saveCommand = new DelegateCommand(Save);
+            
+            _openCommand = new DelegateCommand(Open);
+            
             _speechSynthesizer.SpeakCompleted += _speechSynthesizer_SpeakCompleted;
 
-            _timer = new Timer(UpdateTimer);
-            _timer.Change(100, 100);
 
+        }
 
-            //Configuration config = new Configuration();
+        private void Open()
+        {
 
-            //config.Name = "This is a test Configuration";
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            
+            openFileDialog.FileName = "Configuration.xml"; 
+            
+            openFileDialog.DefaultExt = ".xml"; 
+            
+            openFileDialog.Filter = "Configuration documents (.xml)|*.xml"; 
 
-            //config.Schedule = Model;
+            Nullable<bool> result = openFileDialog.ShowDialog();
 
-           //Model.NumberOfRounds = 2;
-            //Model.Interval = 10000;
+            
+            if (result == true)
+            {
+                ConfigurationStorage store = new ConfigurationStorage();
 
-            //Model.Add(new PracticeClass("Super Stock Touring", 1000 * 20));
+                store.Load(openFileDialog.FileName);
 
-            //Model.Add(new PracticeClass("Modified Touring", 1000 * 20));
+                _model = store.Configuration.Schedule;
 
-            //Model.Add(new PracticeClass("Pro10 and Pro12", 1000 * 20));
+                Model.Initialization();
 
-            //Model.Add(new PracticeClass("Formula One", 1000 * 20));
+                Model.OnAnnouncement += OnAnnouncement;
 
-            //Model.Add(new PracticeClass("Mini's", 1000 * 20));
+                UpdateGUI();
 
-            //Model.Add(new PracticeClass("Under Twelves", 1000 * 20));
+                _timer = new Timer(UpdateTimer);
 
-            //Model.AddAnnoucement(new Announcement(ScheduleEventType.Started, "Practice Started for [PracticeClass.Name]"));
+                _timer.Change(100, 100);
 
-            //Model.AddAnnoucement(new Announcement(ScheduleEventType.Finished, "Practice Finshed for [PracticeClass.Name]"));
+                
+            }
 
-            //Model.AddAnnoucement(new Announcement(ScheduleEventType.Next, "Next up [PracticeClass.Name]",1000*10));
-
-            Model.OnAnnouncement += OnAnnouncement;
-
-
-            Model.Initialization();
-
-            UpdateGUI();
 
         }
 
@@ -264,6 +261,11 @@ namespace RaceTime.GUI
         public ICommand SaveCommand
         {
             get { return _saveCommand; }
+        }
+
+        public ICommand OpenCommand
+        {
+            get { return _openCommand; }
         }
 
 

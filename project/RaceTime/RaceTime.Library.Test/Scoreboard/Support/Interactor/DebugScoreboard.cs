@@ -29,12 +29,12 @@ namespace RaceTime.Library.Test.Scoreboard
 
         public void ClearDisplay()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void WriteRaceInfor(int round, int heat, string elapsedTime, string name)
         {
-            var serialOutputText = string.Format("{0}:{1}:{2}:{3}:{4}", round, heat, elapsedTime);
+            var serialOutputText = string.Format("{0}:{1}:{2}:0:0", round, heat, elapsedTime);
 
             FriendlyOutputText = string.Format("Round:{0} Heat:{1} Time:{2} Name:{3}", round, heat, elapsedTime, name); 
 
