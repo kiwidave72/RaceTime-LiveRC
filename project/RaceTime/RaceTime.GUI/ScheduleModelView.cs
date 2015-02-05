@@ -4,10 +4,12 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Media;
 using System.Speech.Synthesis;
 using System.Text;
 using System.Threading;
 using System.Windows.Input;
+using System.Windows.Media;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Win32;
 using RaceTime.Library.Annotations;
@@ -394,8 +396,22 @@ namespace RaceTime.GUI
             text = text.Replace("[PracticeClass.HeatNumber]", CurrentClass.HeatNumber.ToString());
 
             AnnouncmentText = text.Replace("[Schedule.Remaining]", (Model.RaceClock.RemainingMinutes()).ToString());
-            
-            _speechSynthesizer.SpeakAsync(AnnouncmentText);
+
+            if (e.EventType == ScheduleEventType.Finished)
+            {
+                
+                var player = new SoundPlayer(@"c:\buzzer_x.wav");
+                
+                player.PlaySync();
+
+                _speechSynthesizer.SpeakAsync(AnnouncmentText);
+
+
+            }
+            else
+            {
+                _speechSynthesizer.SpeakAsync(AnnouncmentText);
+            }
         }
 
         void _speechSynthesizer_SpeakCompleted(object sender, SpeakCompletedEventArgs e)

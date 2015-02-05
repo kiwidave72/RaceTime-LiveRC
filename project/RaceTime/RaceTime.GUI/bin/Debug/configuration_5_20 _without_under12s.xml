@@ -2,25 +2,25 @@
 <Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Schedule>
     <Interval>1000</Interval>
-    <CurrentRound>2</CurrentRound>
-    <NumberOfRounds>8</NumberOfRounds>
+    <CurrentRound>1</CurrentRound>
+    <NumberOfRounds>3</NumberOfRounds>
     <Schedule>
       <PracticeClass>
-        <ScheduledTime>2015-02-05T21:48:35.6329805+13:00</ScheduledTime>
+        <ScheduledTime>2015-02-01T11:09:40.2280202+13:00</ScheduledTime>
         <HeatNumber>1</HeatNumber>
         <Name>Modified  and Super Stock Touring</Name>
         <Time>10</Time>
         <Status>Ready</Status>
       </PracticeClass>
       <PracticeClass>
-        <ScheduledTime>2015-02-05T21:58:36.6329805+13:00</ScheduledTime>
+        <ScheduledTime>2015-02-01T11:16:00.2280202+13:00</ScheduledTime>
         <HeatNumber>2</HeatNumber>
         <Name>Pro10 and Pro12 and F1</Name>
         <Time>10</Time>
         <Status>Ready</Status>
       </PracticeClass>
       <PracticeClass>
-        <ScheduledTime>2015-02-05T22:08:37.6329805+13:00</ScheduledTime>
+        <ScheduledTime>2015-02-01T11:22:20.2280202+13:00</ScheduledTime>
         <HeatNumber>3</HeatNumber>
         <Name>Mini's and Stock Touring</Name>
         <Time>10</Time>
@@ -45,26 +45,25 @@
       </Announcement>
       <Announcement>
         <EventType>Repeatable</EventType>
-        <Text>Five miniutes warning. Drivers please change over.</Text>
+        <Text>5 minute warning. Drivers please change over.</Text>
         <Time>5</Time>
       </Announcement>
     </Announcements>
-    <IsScheduleRunning>true</IsScheduleRunning>
+    <IsScheduleRunning>false</IsScheduleRunning>
     <IntervalClock>
       <HasStarted>false</HasStarted>
-      <HasElapsed>true</HasElapsed>
+      <HasElapsed>false</HasElapsed>
     </IntervalClock>
     <RepeatableAnnoncementClock>
       <HasStarted>false</HasStarted>
-      <HasElapsed>true</HasElapsed>
+      <HasElapsed>false</HasElapsed>
     </RepeatableAnnoncementClock>
     <NextPracticeAnnoucementClock>
       <HasStarted>false</HasStarted>
-      <HasElapsed>true</HasElapsed>
+      <HasElapsed>false</HasElapsed>
     </NextPracticeAnnoucementClock>
     <SerialPortNames>
       <string>COM1</string>
     </SerialPortNames>
-    <CurrentHeat>1</CurrentHeat>
   </Schedule>
 </Configuration>

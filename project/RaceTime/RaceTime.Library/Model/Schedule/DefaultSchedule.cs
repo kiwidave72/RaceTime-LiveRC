@@ -298,8 +298,7 @@ namespace RaceTime.Library.Model.Schedule
              SetCurrentPracticeClassFromSchedule();
 
              SetNextPracticeClass();
-
-
+             
              RaceClock.SetRaceTime(CurrentPracticeClass.Time * 60 * 1000);
 
              SetRepeatableAnnoucementClock();
@@ -348,7 +347,6 @@ namespace RaceTime.Library.Model.Schedule
             }
 
 
-             SetRepeatableAnnoucementClock();
 
 
             SetCurrentPracticeClassFromSchedule();
@@ -374,7 +372,10 @@ namespace RaceTime.Library.Model.Schedule
 
          void RepeatableAnnoncementClock_OnElapsedHasExpired(object sender, EventArgs e)
          {
-             var announcement = Announcements.FirstOrDefault(i => i.EventType == ScheduleEventType.Repeatable);
+             var announcement = Announcements.SingleOrDefault(i => i.EventType == ScheduleEventType.Repeatable && i.Time < RaceClock.RemainingMinutes()+0.5);
+
+             if (announcement == null)
+                 return;
 
              OnAnnoucementEvent(announcement, CurrentPracticeClass);
              
