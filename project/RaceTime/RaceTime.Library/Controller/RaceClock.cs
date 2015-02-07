@@ -81,7 +81,7 @@ namespace RaceTime.Library.Controller
             get
             {
                 var result = new TimeSpan(Elapsed());
-                return string.Format("{0}:{1}.{2}", result.Minutes, result.Seconds,
+                return string.Format("{0:d2}:{1:d2}.{2:d3}", result.Minutes, result.Seconds,
                     result.Milliseconds);
             }
         }
@@ -92,7 +92,7 @@ namespace RaceTime.Library.Controller
             get
             {
                 var result = new TimeSpan(Elapsed());
-                return string.Format("{0}:{1}", result.Minutes, result.Seconds);
+                return string.Format("{0:d2}:{1:d2}", result.Minutes, result.Seconds);
             }
         }
 
@@ -133,7 +133,7 @@ namespace RaceTime.Library.Controller
             get
             {
                 var result = new TimeSpan(Remaining());
-                return string.Format("{0}:{1}", result.Minutes, result.Seconds);
+                return string.Format("{0:d2}:{1:d2}", result.Minutes, result.Seconds);
             }
         }
 
@@ -143,7 +143,7 @@ namespace RaceTime.Library.Controller
             get
             {
                 var result = new TimeSpan(Remaining());
-                return string.Format("{0}:{1}.{3}", result.Minutes, result.Seconds,
+                return string.Format("{0:d2}:{1:d2}.{2:d3}", result.Minutes, result.Seconds,
                     result.Milliseconds);
             }
         }
@@ -154,7 +154,7 @@ namespace RaceTime.Library.Controller
             get
             {
                 var result = new TimeSpan(RaceTime*10000);
-                return string.Format("{0}:{1}.{2}", result.Minutes, result.Seconds,
+                return string.Format("{0:d2}:{1:d2}.{2:d3}", result.Minutes, result.Seconds,
                     result.Milliseconds);
             }
         }

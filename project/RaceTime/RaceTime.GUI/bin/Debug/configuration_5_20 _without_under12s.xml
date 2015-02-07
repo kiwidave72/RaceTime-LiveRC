@@ -3,27 +3,27 @@
   <Schedule>
     <Interval>1000</Interval>
     <CurrentRound>1</CurrentRound>
-    <NumberOfRounds>3</NumberOfRounds>
+    <NumberOfRounds>8</NumberOfRounds>
     <Schedule>
       <PracticeClass>
         <ScheduledTime>2015-02-01T11:09:40.2280202+13:00</ScheduledTime>
         <HeatNumber>1</HeatNumber>
         <Name>Modified  and Super Stock Touring</Name>
-        <Time>10</Time>
+        <Time>20</Time>
         <Status>Ready</Status>
       </PracticeClass>
       <PracticeClass>
         <ScheduledTime>2015-02-01T11:16:00.2280202+13:00</ScheduledTime>
         <HeatNumber>2</HeatNumber>
-        <Name>Pro10 and Pro12 and F1</Name>
-        <Time>10</Time>
+        <Name>Pro10 and Pro12 and Formula 1</Name>
+        <Time>20</Time>
         <Status>Ready</Status>
       </PracticeClass>
       <PracticeClass>
         <ScheduledTime>2015-02-01T11:22:20.2280202+13:00</ScheduledTime>
         <HeatNumber>3</HeatNumber>
         <Name>Mini's and Stock Touring</Name>
-        <Time>10</Time>
+        <Time>20</Time>
         <Status>Ready</Status>
       </PracticeClass>
     </Schedule>
@@ -45,7 +45,7 @@
       </Announcement>
       <Announcement>
         <EventType>Repeatable</EventType>
-        <Text>5 minute warning. Drivers please change over.</Text>
+        <Text>Drivers your 5 minutes is up, please finish your lap, and change over.</Text>
         <Time>5</Time>
       </Announcement>
     </Announcements>

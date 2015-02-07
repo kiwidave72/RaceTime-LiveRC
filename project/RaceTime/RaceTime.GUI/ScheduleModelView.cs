@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO.Ports;
 using System.Linq;
 using System.Media;
 using System.Speech.Synthesis;
 using System.Text;
 using System.Threading;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Win32;
 using RaceTime.Library.Annotations;
@@ -56,11 +59,17 @@ namespace RaceTime.GUI
         private string _serialPortName;
         private long _interval;
         private int _currentHeat;
+        private ObservableCollection<string> _announcementCollection;
 
 
         public ScheduleModelView()
         {
-            
+
+            ScoreboardOutputList = new ObservableCollection<string>();
+
+            AnnoucementObservableCollection= new ObservableCollection<string>();
+    
+
             _startScheduleCommand = new DelegateCommand(StartSchedule);
 
             _stopScheduleCommand = new DelegateCommand(StopSchedule);
@@ -71,7 +80,7 @@ namespace RaceTime.GUI
             
             _speechSynthesizer.SpeakCompleted += _speechSynthesizer_SpeakCompleted;
 
-
+            SerialPortNames = SerialPort.GetPortNames();
         }
 
         private void Open()
@@ -102,14 +111,17 @@ namespace RaceTime.GUI
 
                 UpdateGUI();
 
-                _timer = new Timer(UpdateTimer);
-
-                _timer.Change(100, 100);
-
-                
+                StartUpdateTimer();
             }
 
 
+        }
+
+        private void StartUpdateTimer()
+        {
+            _timer = new Timer(UpdateTimer);
+
+            _timer.Change(100, 100);
         }
 
         public void Save()
@@ -167,7 +179,6 @@ namespace RaceTime.GUI
             {
                 _annoucementText = value;
                 OnPropertyChanged("AnnouncmentText");
-
             }
         }
 
@@ -226,6 +237,19 @@ namespace RaceTime.GUI
             }
         }
 
+        public ObservableCollection<string> ScoreboardOutputList { get; set; }
+     
+        public ObservableCollection<string> AnnoucementObservableCollection 
+        {
+            get { return _announcementCollection; }
+            set
+            {
+                _announcementCollection = value;
+                OnPropertyChanged("AnnoucementObservableCollection");
+
+            }
+        }
+
         public string ScoreboardOutput
         {
             get { return _scoreboardOutput; }
@@ -255,7 +279,7 @@ namespace RaceTime.GUI
             {
                 _serialPortName = value;
                 OnPropertyChanged("SerialPortName");
-                Model.SetScoreboardPort(_serialPortName);
+               Model.SetScoreboardPort(_serialPortName);
 
             }
         }
@@ -281,10 +305,10 @@ namespace RaceTime.GUI
             get { return _stopScheduleCommand; }
         }
 
-        
 
         private void StartSchedule()
         {
+            StartUpdateTimer();
           
             _model.Run();
         }
@@ -304,7 +328,6 @@ namespace RaceTime.GUI
 
         private void UpdateGUI()
         {
-           // SerialPortName = Model.SerialPortName;
 
             Interval = Model.Interval;
 
@@ -321,7 +344,9 @@ namespace RaceTime.GUI
             IntervalElapsedTime = Model.IntervalClock.RemainingTimeMinutesSecondsString;
                 
             ScoreboardOutput = Model.GetScoreboardText();
-
+            
+           // ScoreboardOutputList.Add(ScoreboardOutput);
+            
             CurrentRound = Model.CurrentRound;
 
             NumberOfRounds = Model.NumberOfRounds;
@@ -329,12 +354,14 @@ namespace RaceTime.GUI
             CurrentClass = Model.CurrentPracticeClass;
 
             NextClass = Model.NextPracticeClass;
-
-            SerialPortNames = Model.SerialPortNames;
-
+            
             Schedule = new ObservableCollection<PracticeClass>(Model.Schedule);
 
             ScoreboardErrors = new ObservableCollection<Exception>(Model.GetScoreboardErrors());
+
+        
+           
+
         }
 
         public int CurrentHeat
@@ -397,7 +424,7 @@ namespace RaceTime.GUI
 
             AnnouncmentText = text.Replace("[Schedule.Remaining]", (Model.RaceClock.RemainingMinutes()).ToString());
 
-            if (e.EventType == ScheduleEventType.Finished)
+            if (e.EventType == ScheduleEventType.Finished || e.EventType == ScheduleEventType.Stopped)
             {
                 
                 var player = new SoundPlayer(@"c:\buzzer_x.wav");
@@ -412,6 +439,12 @@ namespace RaceTime.GUI
             {
                 _speechSynthesizer.SpeakAsync(AnnouncmentText);
             }
+
+            Application.Current.Dispatcher.BeginInvoke(
+                  DispatcherPriority.Background,
+                    new Action(() => AnnoucementObservableCollection.Add(DateTime.Now.ToShortTimeString() + " "+Model.RaceClock.ElapsedTimeMinutesSecondsString  +" -> '"+  AnnouncmentText+"'")));
+
+            
         }
 
         void _speechSynthesizer_SpeakCompleted(object sender, SpeakCompletedEventArgs e)

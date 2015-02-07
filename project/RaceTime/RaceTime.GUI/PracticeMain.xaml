@@ -15,9 +15,11 @@
             <ColumnDefinition Width="200"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="5"></ColumnDefinition>
+
         </Grid.ColumnDefinitions>        
         
-            <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" >
+            <StackPanel Grid.Column="0" Grid.Row="1" Grid.RowSpan="4" >
                 <StackPanel Margin="5,20,5,0">
 
                 <Label>Current Heat</Label>
@@ -84,8 +86,8 @@
             <TextBlock TextAlignment="Left"  MinWidth="200" Foreground="blue" FontSize="30" Text="{Binding RaceTimeRemainingTimeString}"></TextBlock>
             <TextBlock TextAlignment="Left"  MinWidth="200" Foreground="blue" FontSize="30" Text="{Binding IntervalElapsedTime}"></TextBlock>
 
-            <TextBlock TextAlignment="Left"  MinWidth="200" Text="{Binding PracticeTime}"></TextBlock>
-            <TextBlock TextAlignment="Left"  MinWidth="200" Text="{Binding ElapsedTime}"></TextBlock>
+            <!--<TextBlock TextAlignment="Left"  MinWidth="200" Text="{Binding PracticeTime}"></TextBlock>
+            <TextBlock TextAlignment="Left"  MinWidth="200" Text="{Binding ElapsedTime}"></TextBlock>-->
 
         </StackPanel>
         <ProgressBar Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" Orientation="Horizontal"  Minimum="0" Maximum="{Binding PracticeTime}" Value="{Binding ElapsedTime}" />
@@ -113,6 +115,7 @@
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            
         </ListBox>
 
         <StackPanel Grid.Row="4" Grid.Column="1">
@@ -136,5 +139,10 @@
             </ListBox>
            
         </StackPanel>
+        <ListBox Grid.Column="2" Grid.Row="4" ItemsSource="{Binding AnnoucementObservableCollection}" Height="300"  >
+          
+        </ListBox>
+
+
     </Grid>
 </Window>
