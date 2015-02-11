@@ -1,32 +1,35 @@
 <?xml version="1.0"?>
 <Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Schedule>
-    <Interval>1000</Interval>
+    <Interval>500</Interval>
     <CurrentRound>1</CurrentRound>
     <NumberOfRounds>8</NumberOfRounds>
     <Schedule>
       <PracticeClass>
-        <ScheduledTime>2015-02-01T11:09:40.2280202+13:00</ScheduledTime>
+        <ScheduledTime>2015-02-11T20:33:55.3524259+13:00</ScheduledTime>
         <HeatNumber>1</HeatNumber>
         <Name>Modified  and Super Stock Touring</Name>
         <Time>20</Time>
         <Status>Ready</Status>
       </PracticeClass>
       <PracticeClass>
-        <ScheduledTime>2015-02-01T11:16:00.2280202+13:00</ScheduledTime>
+        <ScheduledTime>2015-02-11T20:53:55.3524259+13:00</ScheduledTime>
         <HeatNumber>2</HeatNumber>
         <Name>Pro10 and Pro12 and Formula 1</Name>
         <Time>20</Time>
         <Status>Ready</Status>
       </PracticeClass>
       <PracticeClass>
-        <ScheduledTime>2015-02-01T11:22:20.2280202+13:00</ScheduledTime>
+        <ScheduledTime>2015-02-11T21:13:55.3524259+13:00</ScheduledTime>
         <HeatNumber>3</HeatNumber>
         <Name>Mini's and Stock Touring</Name>
         <Time>20</Time>
         <Status>Ready</Status>
       </PracticeClass>
     </Schedule>
+    <AnnouncementsMade>
+      <string>Practice Started for Heat [PracticeClass.HeatNumber] , [PracticeClass.Name]</string>
+    </AnnouncementsMade>
     <Announcements>
       <Announcement>
         <EventType>Started</EventType>
@@ -52,18 +55,19 @@
     <IsScheduleRunning>false</IsScheduleRunning>
     <IntervalClock>
       <HasStarted>false</HasStarted>
-      <HasElapsed>false</HasElapsed>
+      <HasElapsed>true</HasElapsed>
     </IntervalClock>
     <RepeatableAnnoncementClock>
-      <HasStarted>false</HasStarted>
+      <HasStarted>true</HasStarted>
       <HasElapsed>false</HasElapsed>
     </RepeatableAnnoncementClock>
     <NextPracticeAnnoucementClock>
-      <HasStarted>false</HasStarted>
+      <HasStarted>true</HasStarted>
       <HasElapsed>false</HasElapsed>
     </NextPracticeAnnoucementClock>
     <SerialPortNames>
       <string>COM1</string>
     </SerialPortNames>
+    <CurrentHeat>1</CurrentHeat>
   </Schedule>
 </Configuration>

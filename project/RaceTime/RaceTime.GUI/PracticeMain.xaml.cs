@@ -31,6 +31,8 @@ namespace RaceTime.GUI
         {
             model = new ScheduleModelView();
             
+            
+
             ((Window) sender).DataContext = model;
 
          
