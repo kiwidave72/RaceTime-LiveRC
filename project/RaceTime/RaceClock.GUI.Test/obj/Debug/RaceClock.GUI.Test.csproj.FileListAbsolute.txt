@@ -20,15 +20,3 @@ C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.
 C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\obj\Debug\RaceClock.GUI.Test.csprojResolveAssemblyReference.cache
 C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\obj\Debug\RaceClock.GUI.Test.dll
 C:\Users\DavidN\Documents\GitHub\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\obj\Debug\RaceClock.GUI.Test.pdb
-C:\Git\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\bin\Debug\RaceClock.GUI.Test.dll.config
-C:\Git\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\bin\Debug\RaceClock.GUI.Test.dll
-C:\Git\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\bin\Debug\RaceClock.GUI.Test.pdb
-C:\Git\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\bin\Debug\Microsoft.Practices.Prism.dll
-C:\Git\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\bin\Debug\RaceTime.GUI.exe
-C:\Git\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\bin\Debug\RaceTime.Library.dll
-C:\Git\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\bin\Debug\RaceTime.GUI.pdb
-C:\Git\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\bin\Debug\RaceTime.Library.pdb
-C:\Git\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\bin\Debug\Microsoft.Practices.Prism.xml
-C:\Git\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\obj\Debug\RaceClock.GUI.Test.csprojResolveAssemblyReference.cache
-C:\Git\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\obj\Debug\RaceClock.GUI.Test.dll
-C:\Git\RaceTime-LiveRC\project\RaceTime\RaceClock.GUI.Test\obj\Debug\RaceClock.GUI.Test.pdb

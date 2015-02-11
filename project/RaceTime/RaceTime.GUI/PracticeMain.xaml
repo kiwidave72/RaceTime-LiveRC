@@ -1,10 +1,17 @@
 ﻿<Window x:Class="RaceTime.GUI.PracticeMain"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="PracticeMain"  WindowStartupLocation="CenterScreen" Width="1600" Height="900" WindowState="Maximized" Loaded="Window_Loaded" Background="DarkCyan">
-    
-    <Grid> 
-        <Grid.RowDefinitions >
+        Title="PracticeMain"  WindowStartupLocation="CenterScreen" Width="1600" Height="900" WindowState="Maximized" Loaded="Window_Loaded" FontFamily="Helvetica Neue"  >
+    <Window.Background>
+        <SolidColorBrush Color="#FF2D2D30"/>
+
+    </Window.Background>
+
+<Grid>
+        <!--<Grid.Background>
+            <ImageBrush ImageSource="Images\body-bg.jpg" AlignmentY="Top" Stretch="None"/>
+        </Grid.Background>-->
+          <Grid.RowDefinitions >
             <RowDefinition Height="200" ></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="200"></RowDefinition>
@@ -12,9 +19,10 @@
             <RowDefinition Height="200"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition Width="5"></ColumnDefinition>
 
         </Grid.ColumnDefinitions>        
@@ -49,14 +57,28 @@
             </StackPanel>
                 
                 <StackPanel Margin="5,29,5,0">
-                    <Button>Edit Practice Sessions</Button>
-                    <Button>Edit Announcements</Button>
-                <Button Command="{Binding OpenCommand}">Open</Button>
+                <Button Command="{Binding OpenCommand}">Open
+                    <Button.Style>
+                        <Style TargetType="Button">
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasLoadedConfiguration}" Value="False">
+                                    <Setter Property="IsEnabled" Value="True"></Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding HasLoadedConfiguration}" Value="True">
+                                    <Setter Property="IsEnabled" Value="False"></Setter>
+                                </DataTrigger>
+
+                            </Style.Triggers>
+
+                        </Style>
+                    </Button.Style>
+                </Button>
                 <Button Command="{Binding SaveCommand}">Save</Button>
             </StackPanel>
             </StackPanel>
         
-            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
                  <StackPanel Orientation="Horizontal">
                     <Label>Heat:</Label>
                     <Label FontSize="40" Content="{Binding CurrentClass.HeatNumber}"></Label>
@@ -69,19 +91,22 @@
                     <Label FontSize="40" Content="{Binding NumberOfRounds}"></Label>
 
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label>Current Heat:</Label>
-                <Label FontSize="20" Content="{Binding CurrentClass.Name}"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label>Next Up:</Label>
-                <Label FontSize="20" Content="{Binding NextClass.Name}"></Label>
-                </StackPanel>
                 <TextBlock x:Name="Announcement" Text="{Binding AnnouncmentText}"></TextBlock>
         </StackPanel>
 
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label>Current Heat:</Label>
+                <Label FontSize="40" Content="{Binding CurrentClass.Name}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Next Up:</Label>
+                <Label FontSize="30" Content="{Binding NextClass.Name}"></Label>
+            </StackPanel>
+
+        </StackPanel>
         
-        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Left">
+        <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Vertical" HorizontalAlignment="Left">
             <TextBlock TextAlignment="Left"  MinWidth="200" Foreground="Red" FontSize="60" Text="{Binding ElapsedTimeString}"></TextBlock>
             <TextBlock TextAlignment="Left"  MinWidth="200" Foreground="blue" FontSize="30" Text="{Binding RaceTimeRemainingTimeString}"></TextBlock>
             <TextBlock TextAlignment="Left"  MinWidth="200" Foreground="blue" FontSize="30" Text="{Binding IntervalElapsedTime}"></TextBlock>
@@ -91,10 +116,43 @@
 
         </StackPanel>
         <ProgressBar Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" Orientation="Horizontal"  Minimum="0" Maximum="{Binding PracticeTime}" Value="{Binding ElapsedTime}" />
-            
-            <Button  Grid.Column="1" Grid.Row="2" Height="100" Padding="5,5,5,5"  Foreground="Silver" FontSize="35" Content="Start" Command="{Binding StartScheduleCommand}"/>
-            <Button  Grid.Column="2" Grid.Row="2" Height="100" Padding="5,5,5,5"  Foreground="Silver" FontSize="35" Content="Stop" Command="{Binding StopScheduleCommand}"/>
-        <ListBox Grid.Row="3" Grid.Column="1" x:Name="ListPractice" ItemsSource="{Binding Schedule}" >
+
+        <Button  Grid.Column="1" Grid.Row="2" Height="100" Padding="5,5,5,5"  Foreground="Silver" FontSize="35" Content="Start" Command="{Binding StartScheduleCommand}">
+            <Button.Style>
+                <Style TargetType="Button">
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding HasRaceStarted}" Value="False">
+                            <Setter Property="IsEnabled" Value="True"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding HasRaceStarted}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"></Setter>
+                        </DataTrigger>
+
+                    </Style.Triggers>
+
+                </Style>
+            </Button.Style>
+
+        </Button>
+        <Button  Grid.Column="2" Grid.Row="2" Height="100" Padding="5,5,5,5"  Foreground="Silver" FontSize="35" Content="Stop" Command="{Binding StopScheduleCommand}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding HasRaceStarted}" Value="True">
+                            <Setter Property="IsEnabled" Value="True"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding HasRaceStarted}" Value="False">
+                            <Setter Property="IsEnabled" Value="False"></Setter>
+                        </DataTrigger>
+
+                    </Style.Triggers>
+
+                </Style>
+            </Button.Style>
+         </Button>
+        <!--<ListBox Grid.Row="3" Grid.Column="1" x:Name="ListPractice" ItemsSource="{Binding Schedule}" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,5">
@@ -141,8 +199,8 @@
         </StackPanel>
         <ListBox Grid.Column="2" Grid.Row="4" ItemsSource="{Binding AnnoucementObservableCollection}" Height="300"  >
           
-        </ListBox>
-
+        </ListBox>-->
+        <!--<Image Grid.Column="0" Grid.Row="3" Grid.RowSpan="4"  Grid.ColumnSpan="4" Source="Images\New-zealand-wallpaper.jpg" Stretch="UniformToFill" />-->
 
     </Grid>
 </Window>

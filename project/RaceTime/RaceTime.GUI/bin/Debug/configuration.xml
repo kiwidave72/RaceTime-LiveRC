@@ -1,33 +1,32 @@
 <?xml version="1.0"?>
 <Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Schedule>
-    <Interval>500</Interval>
+    <Interval>1000</Interval>
     <CurrentRound>1</CurrentRound>
     <NumberOfRounds>8</NumberOfRounds>
     <Schedule>
       <PracticeClass>
-        <ScheduledTime>2015-02-06T13:35:17.2234366+13:00</ScheduledTime>
+        <ScheduledTime>2015-02-01T11:09:40.2280202+13:00</ScheduledTime>
         <HeatNumber>1</HeatNumber>
         <Name>Modified  and Super Stock Touring</Name>
         <Time>20</Time>
         <Status>Ready</Status>
       </PracticeClass>
       <PracticeClass>
-        <ScheduledTime>2015-02-06T13:55:17.2234366+13:00</ScheduledTime>
+        <ScheduledTime>2015-02-01T11:16:00.2280202+13:00</ScheduledTime>
         <HeatNumber>2</HeatNumber>
         <Name>Pro10 and Pro12 and Formula 1</Name>
         <Time>20</Time>
         <Status>Ready</Status>
       </PracticeClass>
       <PracticeClass>
-        <ScheduledTime>2015-02-06T14:15:17.2234366+13:00</ScheduledTime>
+        <ScheduledTime>2015-02-01T11:22:20.2280202+13:00</ScheduledTime>
         <HeatNumber>3</HeatNumber>
         <Name>Mini's and Stock Touring</Name>
         <Time>20</Time>
         <Status>Ready</Status>
       </PracticeClass>
     </Schedule>
-    <AnnouncementsMade />
     <Announcements>
       <Announcement>
         <EventType>Started</EventType>
@@ -37,11 +36,6 @@
       <Announcement>
         <EventType>Finished</EventType>
         <Text>Practice Finished for Heat [PracticeClass.HeatNumber] , [PracticeClass.Name]. Drivers Finish your lap</Text>
-        <Time>0</Time>
-      </Announcement>
-      <Announcement>
-        <EventType>Stopped</EventType>
-        <Text>Practice Stopped for Heat [PracticeClass.HeatNumber] , [PracticeClass.Name]. Drivers Finish your lap</Text>
         <Time>0</Time>
       </Announcement>
       <Announcement>
@@ -61,7 +55,7 @@
       <HasElapsed>false</HasElapsed>
     </IntervalClock>
     <RepeatableAnnoncementClock>
-      <HasStarted>true</HasStarted>
+      <HasStarted>false</HasStarted>
       <HasElapsed>false</HasElapsed>
     </RepeatableAnnoncementClock>
     <NextPracticeAnnoucementClock>
@@ -71,6 +65,5 @@
     <SerialPortNames>
       <string>COM1</string>
     </SerialPortNames>
-    <CurrentHeat>1</CurrentHeat>
   </Schedule>
 </Configuration>

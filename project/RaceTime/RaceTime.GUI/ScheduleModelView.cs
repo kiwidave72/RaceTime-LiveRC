@@ -60,7 +60,8 @@ namespace RaceTime.GUI
         private long _interval;
         private int _currentHeat;
         private ObservableCollection<string> _announcementCollection;
-
+        private bool _hasRaceStarted ;
+        private bool _hasLoadedConfiguration=false;
 
         public ScheduleModelView()
         {
@@ -112,6 +113,8 @@ namespace RaceTime.GUI
                 UpdateGUI();
 
                 StartUpdateTimer();
+
+                _hasLoadedConfiguration = true;
             }
 
 
@@ -284,6 +287,26 @@ namespace RaceTime.GUI
             }
         }
 
+        public bool HasRaceStarted
+        {
+            get { return _hasRaceStarted; }
+            set
+            {
+                _hasRaceStarted = value;
+                OnPropertyChanged("HasRaceStarted");
+             }
+        }
+
+        public bool HasLoadedConfiguration
+        {
+            get { return _hasLoadedConfiguration; }
+            set
+            {
+                _hasLoadedConfiguration = value;
+                OnPropertyChanged("HasLoadedConfiguration");
+            }
+        }
+
         public ICommand SaveCommand
         {
             get { return _saveCommand; }
@@ -344,9 +367,7 @@ namespace RaceTime.GUI
             IntervalElapsedTime = Model.IntervalClock.RemainingTimeMinutesSecondsString;
                 
             ScoreboardOutput = Model.GetScoreboardText();
-            
-           // ScoreboardOutputList.Add(ScoreboardOutput);
-            
+           
             CurrentRound = Model.CurrentRound;
 
             NumberOfRounds = Model.NumberOfRounds;
@@ -359,7 +380,8 @@ namespace RaceTime.GUI
 
             ScoreboardErrors = new ObservableCollection<Exception>(Model.GetScoreboardErrors());
 
-        
+            HasRaceStarted = Model.RaceClock.HasStarted;
+
            
 
         }
