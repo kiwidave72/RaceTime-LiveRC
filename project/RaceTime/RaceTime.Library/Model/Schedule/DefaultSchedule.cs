@@ -76,6 +76,14 @@ namespace RaceTime.Library.Model.Schedule
         private int _currentHeat;
         private List<string> _annoucementsMade;
 
+        private bool _racePaused = false;
+
+        public bool RacePaused
+        {
+            get { return _racePaused; }
+            set { _racePaused = value; }
+        }
+
         public int CurrentRound
         {
             get { return _currentRound; }
@@ -357,37 +365,40 @@ namespace RaceTime.Library.Model.Schedule
                 ScoreboardNotificationTimer.Enabled = true;
             }
 
-            if (HaveFinishRound())
-            {
-                IsScheduleRunning = false;
+          
+                if (HaveFinishRound())
+                {
+                    IsScheduleRunning = false;
 
-                return;
-            }
+                    return;
+                }
 
 
+                SetCurrentPracticeClassFromSchedule();
 
+                CurrentPracticeClass.Status = "Running";
 
-            SetCurrentPracticeClassFromSchedule();
-             
-            CurrentPracticeClass.Status = "Running";
+                SetNextPracticeClass();
 
-            SetNextPracticeClass();
+                IsScheduleRunning = true;
 
-            IsScheduleRunning = true;
+                var announcement = Announcements.FirstOrDefault(i => i.EventType == ScheduleEventType.Started);
 
-            var announcement = Announcements.FirstOrDefault(i => i.EventType == ScheduleEventType.Started);
+                OnAnnoucementEvent(announcement, CurrentPracticeClass);
 
-            OnAnnoucementEvent(announcement,CurrentPracticeClass);
+                RaceClock.SetRaceTime(CurrentPracticeClass.Time * 60 * 1000);
 
-            RaceClock.SetRaceTime(CurrentPracticeClass.Time*60*1000);
-
+          
+            
             RaceClock.Start();
 
             RaceClock.OnElapsedHasExpired += Clock_OnElapsedHasExpired;
 
             SetRepeatableAnnoucementClock();
-          
+
             SetUpTimedAnnoucement();
+
+
         }
 
         void RepeatableAnnoncementClock_OnElapsedHasExpired(object sender, EventArgs e)
@@ -534,9 +545,24 @@ namespace RaceTime.Library.Model.Schedule
 
         }
 
+        public void Pause()
+        {
+            RaceClock.Stop();
+
+            var announcement = Announcements.FirstOrDefault(i => i.EventType == ScheduleEventType.Paused);
+
+            OnAnnoucementEvent(announcement, CurrentPracticeClass);
+
+            IsScheduleRunning = false;
+
+            CurrentPracticeClass.Status = "Pause";
+
+            ScoreboardNotificationTimer = null;
+        }
 
         public void Stop()
         {
+
             RaceClock.Stop();
 
             var announcement = Announcements.FirstOrDefault(i => i.EventType == ScheduleEventType.Stopped);

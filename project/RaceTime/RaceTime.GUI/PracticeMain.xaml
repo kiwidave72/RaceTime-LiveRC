@@ -74,46 +74,36 @@
                 <Label>Annoucements</Label>
                 <ListBox ItemsSource="{Binding AnnoucementObservableCollection}" Height="300"  />
             </StackPanel>
-
+            <StackPanel Margin="5,5,5,5">
                 <Button Command="{Binding OpenCommand}">Open</Button>
                 <Button Command="{Binding SaveCommand}">Save</Button>
-            <Button   Foreground="Silver"  Content="Start" Command="{Binding StartScheduleCommand}">
-                <Button.Style>
-                    <Style TargetType="Button">
 
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding HasRaceStarted}" Value="False">
-                                <Setter Property="IsEnabled" Value="True"></Setter>
-                                <Setter Property="IsEnabled" Value="True"></Setter>
+            </StackPanel>
+            <StackPanel Margin="5,5,5,5">
+                <Button  Content="Start" Command="{Binding StartScheduleCommand}">
+                    <Button.Style>
+                        <Style TargetType="Button">
 
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding HasRaceStarted}" Value="True">
-                                <Setter Property="IsEnabled" Value="False"></Setter>
-                            </DataTrigger>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasRaceStarted}" Value="False">
+                                    <Setter Property="IsEnabled" Value="True"></Setter>
+                                    <Setter Property="IsEnabled" Value="True"></Setter>
 
-                        </Style.Triggers>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding HasRaceStarted}" Value="True">
+                                    <Setter Property="IsEnabled" Value="False"></Setter>
+                                </DataTrigger>
 
-                    </Style>
-                </Button.Style>
+                            </Style.Triggers>
 
-            </Button>
-            <Button   Foreground="Silver" Content="Stop" Command="{Binding StopScheduleCommand}">
-                <Button.Style>
-                    <Style TargetType="Button">
+                        </Style>
+                    </Button.Style>
 
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding HasRaceStarted}" Value="True">
-                                <Setter Property="IsEnabled" Value="True"></Setter>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding HasRaceStarted}" Value="False">
-                                <Setter Property="IsEnabled" Value="False"></Setter>
-                            </DataTrigger>
+                </Button>
+                <Button   Content="Stop" Command="{Binding StopScheduleCommand}">
+                </Button>
 
-                        </Style.Triggers>
-
-                    </Style>
-                </Button.Style>
-            </Button>
+            </StackPanel>
         </StackPanel>
            
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Orientation="Vertical" Background="Orange"  Margin="5,5,5,5">
