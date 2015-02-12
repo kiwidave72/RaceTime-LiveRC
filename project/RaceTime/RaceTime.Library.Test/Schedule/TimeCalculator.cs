@@ -6,14 +6,13 @@ namespace RaceTime.Library.Test.Schedule
 {
     public static class TimeCalculator
     {
-        public static DateTime CalculateTime(DateTime startTime, List<PracticeClass> practiceClasses, int roundNo)
+        public static DateTime CalculateTime(DateTime startTime, List<PracticeClass> practiceClasses, int roundCount)
         {
             DateTime endTime = startTime;
-
-
+            
             foreach (var race in practiceClasses)
             {
-                endTime = endTime.AddMinutes(race.Time * roundNo);
+                endTime = endTime.AddMinutes(race.Time * roundCount);
             }
 
             return endTime;
