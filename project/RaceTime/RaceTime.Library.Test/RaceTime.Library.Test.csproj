@@ -69,6 +69,9 @@
     <Compile Include="LiveRC\About_using_liveRC.cs" />
     <Compile Include="Schedule\About_schedule.cs" />
     <Compile Include="Announcement\About_annoucements.cs" />
+    <Compile Include="Schedule\TimeCalculator.cs" />
+    <Compile Include="Schedule\TimeCalculatorAcceptanceTest.cs" />
+    <Compile Include="Schedule\About_TimeCalculator.cs" />
     <Compile Include="Scoreboard\About_Scoreboard.cs" />
     <Compile Include="Scoreboard\Support\Interactor\DebugScoreboard.cs" />
     <Compile Include="Schedule\Support\Schedule_AcceptanceTest.cs" />

@@ -12,3 +12,8 @@ C:\Git\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\bin\Debug\RaceTime.Libr
 C:\Git\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\bin\Debug\RaceTime.Library.pdb
 C:\Git\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\obj\Debug\RaceTime.Library.dll
 C:\Git\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\obj\Debug\RaceTime.Library.pdb
+C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\bin\Debug\RaceTime.Library.dll
+C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\bin\Debug\RaceTime.Library.pdb
+C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\obj\Debug\RaceTime.Library.csprojResolveAssemblyReference.cache
+C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\obj\Debug\RaceTime.Library.dll
+C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\obj\Debug\RaceTime.Library.pdb
