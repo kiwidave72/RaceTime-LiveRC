@@ -9,7 +9,7 @@ namespace RaceTime.Library.Model
         Started,
         Stopped,
         Paused,
-         Finished,
+        Finished,
         IntervalStarted,
         TenSecondCountedStarted,
         Next,

@@ -34,6 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.4.0.36\lib\net40\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -69,6 +72,9 @@
     <Compile Include="LiveRC\About_using_liveRC.cs" />
     <Compile Include="Schedule\About_schedule.cs" />
     <Compile Include="Announcement\About_annoucements.cs" />
+    <Compile Include="Schedule\TimeCalculator.cs" />
+    <Compile Include="Schedule\TimeCalculatorAcceptanceTest.cs" />
+    <Compile Include="Schedule\About_TimeCalculator.cs" />
     <Compile Include="Scoreboard\About_Scoreboard.cs" />
     <Compile Include="Scoreboard\Support\Interactor\DebugScoreboard.cs" />
     <Compile Include="Schedule\Support\Schedule_AcceptanceTest.cs" />
@@ -79,7 +85,9 @@
       <Name>RaceTime.Library</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
