@@ -70,6 +70,8 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                <Label>Scoreboard</Label>
+                <Label Content="{Binding ScoreboardOutput}" ></Label>
                 
                 <Label>Annoucements</Label>
                 <ListBox ItemsSource="{Binding AnnoucementObservableCollection}" Height="300"  />
@@ -153,7 +155,21 @@
         </StackPanel>
         <ProgressBar Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" Orientation="Horizontal"  Minimum="0" Maximum="{Binding PracticeTime}" Value="{Binding ElapsedTime}" />
 
-       
+        <!--<ListBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" x:Name="ScoreboardErrors" ItemsSource="{Binding ScoreboardErrors}" Height="300"  >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="400" />
+
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Message}" />
+
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>-->
         <!--<ListBox Grid.Row="3" Grid.Column="1" x:Name="ListPractice" ItemsSource="{Binding Schedule}" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -179,7 +195,7 @@
         </ListBox>
 
         <StackPanel Grid.Row="4" Grid.Column="1">
-            <Label x:Name="ScoreboardOuput" Content="{Binding ScoreboardOutput}" ></Label>
+           
             
             
             <ListBox x:Name="ScoreboardErrors" ItemsSource="{Binding ScoreboardErrors}" Height="300"  >
