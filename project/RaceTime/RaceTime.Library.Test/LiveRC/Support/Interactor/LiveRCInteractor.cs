@@ -1,20 +1,16 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net;
-using System.Runtime.Serialization.Json;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ServiceStack;
 
 namespace RaceTime.Library.Test.LiveRC.Support.Interactor
 {
     public class LiveRCInteractor
     {
-        public void ConnectWithLiveRC(string httpLiveLivercComDataGeteventlistPhp)
-        {
-                
-        }
+       
 
-        public string FetchEvents()
+        public EventData FetchEvents()
         {
             var url = "http://live.liverc.com/data/getEventList.php";
 
@@ -22,20 +18,76 @@ namespace RaceTime.Library.Test.LiveRC.Support.Interactor
 
             WebResponse response = request.GetResponse();
 
-            Stream dataStream= response.GetResponseStream();
+            Stream dataStream = response.GetResponseStream();
 
-            var serializer = new DataContractJsonSerializer(typeof(List<local>));
-
-            List<local> events = (List<local>)serializer.ReadObject(dataStream);
+            StreamReader reader = new StreamReader(dataStream);
 
 
+            var data = reader.ReadToEnd();
 
-            TextReader reader =new StreamReader( dataStream);
+            var stuff = data.FromJson<EventData>();
 
-            String body = reader.ReadToEnd();
+            return stuff;
+        }
 
-            return body;
+
+        public DriverData Parse(string data)
+        {
+            var json = data.Remove(0, 4);
+            var stuff = json.FromJson<DriverData>();
+
+            return stuff;
 
         }
+    }
+
+    public class DriverData
+    {
+
+        public string name { get; set; }
+        public string args { get; set; }
+    }
+
+    public class argsValues
+    {
+        public string values { get; set; }
+    }
+
+
+    public class EventData
+    {
+
+        public Local[] local { get; set; }
+        public Local[] premium { get; set; }
+        
+    }
+
+    public class Local
+    {
+        public string track_type { get; set; }
+
+        public string track_id { get; set; }
+
+        public string track_name { get; set; }
+
+        public string Description { get; set; }
+
+        public string data_directory { get; set; }
+
+        public string Status { get; set; }
+
+        public string event_id { get; set; }
+
+        public string event_title { get; set; }
+
+        public string start_date { get; set; }
+
+        public string end_date { get; set; }
+
+        public string local_time_offset { get; set; }
+
+        public string aap_event { get; set; }
+
+        public string frc_event { get; set; }
     }
 }

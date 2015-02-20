@@ -17,3 +17,7 @@ C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\bin\Debug\RaceTime
 C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\obj\Debug\RaceTime.Library.csprojResolveAssemblyReference.cache
 C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\obj\Debug\RaceTime.Library.dll
 C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\obj\Debug\RaceTime.Library.pdb
+C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\bin\Debug\ServiceStack.Text.dll
+C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\bin\Debug\ServiceStack.Text.xml
+C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\bin\Debug\websocket-sharp.dll
+C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library\bin\Debug\websocket-sharp.xml

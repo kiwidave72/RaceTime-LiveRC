@@ -26,3 +26,5 @@ C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library.Test\bin\Debug\Rac
 C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library.Test\obj\Debug\RaceTime.Library.Test.csprojResolveAssemblyReference.cache
 C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library.Test\obj\Debug\RaceTime.Library.Test.dll
 C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library.Test\obj\Debug\RaceTime.Library.Test.pdb
+C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library.Test\bin\Debug\ServiceStack.Text.dll
+C:\Projects\RaceTime-LiveRC\project\RaceTime\RaceTime.Library.Test\bin\Debug\ServiceStack.Text.xml
