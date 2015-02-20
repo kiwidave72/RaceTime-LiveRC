@@ -16,7 +16,7 @@ namespace RaceTime.Library.Test.LiveRC.Support
 
         private EventData _eventJson;
 
-        private DriverData _resultJson;
+        private DriverPositionData _resultJson;
         
         protected void When_I_fetch_the_events()
         {

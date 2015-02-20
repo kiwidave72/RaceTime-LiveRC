@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RaceTime.Library.Model;
 using ServiceStack;
 
 namespace RaceTime.Library.Test.LiveRC.Support.Interactor
@@ -31,12 +32,12 @@ namespace RaceTime.Library.Test.LiveRC.Support.Interactor
         }
 
 
-        public DriverData Parse(string data)
+        public DriverPositionData Parse(string data)
         {
             var json = data.Remove(0, 4);
             var stuff = json.FromJson<DriverData>();
 
-            return stuff;
+            return stuff.args[0].FromJson<DriverPositionData>();
 
         }
     }
@@ -45,7 +46,21 @@ namespace RaceTime.Library.Test.LiveRC.Support.Interactor
     {
 
         public string name { get; set; }
-        public string args { get; set; }
+        public string[] args { get; set; }
+    }
+
+    public class DriverPositionData
+    {
+        public string p1 { get; set; }
+        public string p2 { get; set; }
+        public string p3 { get; set; }
+        public string p4 { get; set; }
+        public string p5 { get; set; }
+        public string p6 { get; set; }
+        public string p7 { get; set; }
+        public string p8 { get; set; }
+        public string p9 { get; set; }
+        public string p10 { get; set; }
     }
 
     public class argsValues
