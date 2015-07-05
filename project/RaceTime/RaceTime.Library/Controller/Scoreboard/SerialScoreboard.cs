@@ -39,16 +39,22 @@ namespace RaceTime.Library.Scoreboard
 
         public void ClearDisplay()
         {
-            WriteOutput("[0:0:0:0:0]");
+            //WriteOutput("[0:0:0:0:0]");
+            WriteOutput("$$$ALL,OFF\r");
+
         }
 
         public void WriteRaceInfor(int round, int heat, string elapsedTime,string name)
         {
-            var serialOutputText = string.Format("[{0}:{1}:{2}:0:0]", round, heat, elapsedTime);
+            //var serialOutputText = string.Format("[{0}:{1}:{2}:0:0]", round, heat, elapsedTime);
+            var serialOutputText = string.Format("$$$T9,1,{1}\r", round, heat, elapsedTime);
+            WriteOutput(serialOutputText);
+            serialOutputText = string.Format("$$$T1,1,{0}\r", round, heat, elapsedTime);
+            WriteOutput(serialOutputText);
 
             FriendlyOutputText = string.Format("Round:{0} Heat:{1} Time:{2} Name:{3}", round, heat, elapsedTime, name); ;
 
-            WriteOutput(serialOutputText);
+            //WriteOutput(serialOutputText);
         }
 
         private void WriteOutput(string line)

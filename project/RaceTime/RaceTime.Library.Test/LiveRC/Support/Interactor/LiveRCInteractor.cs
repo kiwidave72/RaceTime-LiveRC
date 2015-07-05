@@ -23,7 +23,6 @@ namespace RaceTime.Library.Test.LiveRC.Support.Interactor
 
             StreamReader reader = new StreamReader(dataStream);
 
-
             var data = reader.ReadToEnd();
 
             var stuff = data.FromJson<EventData>();
