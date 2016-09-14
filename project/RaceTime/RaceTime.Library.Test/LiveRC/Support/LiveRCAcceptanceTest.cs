@@ -12,15 +12,15 @@ namespace RaceTime.Library.Test.LiveRC.Support
 {
     public class LiveRCAcceptanceTest
     {
-        private readonly LiveRCInteractor _liveRcInteractor = new LiveRCInteractor();
+        private readonly PHPLiveRCInteractor _phpLiveRcInteractor = new PHPLiveRCInteractor();
 
-        private EventData _eventJson;
+        public EventData _eventJson;
 
-        private DriverPositionData _resultJson;
+        protected List<DriverData> _resultJson;
         
         protected void When_I_fetch_the_events()
         {
-            _eventJson = _liveRcInteractor.FetchEvents();
+            _eventJson = _phpLiveRcInteractor.FetchEvents();
         }
 
         protected void Then_I_get_the_list_of_events()
@@ -28,9 +28,9 @@ namespace RaceTime.Library.Test.LiveRC.Support
             Assert.IsTrue(_eventJson.local.Count() >0);
         }
 
-        public void Given_this_driver_data_test_data(string data)
+        public void Given_this_raw_driver_data(string data)
         {
-            _resultJson = _liveRcInteractor.Parse(data);
+            _resultJson = _phpLiveRcInteractor.Parse(data);
 
         }
     }

@@ -53,7 +53,7 @@
     <Compile Include="Application\ApplicationAcceptanceTest.cs" />
     <Compile Include="Application\can_create_the_application.cs" />
     <Compile Include="LiveRC\Support\LiveRCAcceptanceTest.cs" />
-    <Compile Include="LiveRC\Support\Interactor\LiveRCInteractor.cs" />
+    <Compile Include="LiveRC\Support\Interactor\PHPLiveRCInteractor.cs" />
     <Compile Include="Practice\Support\Interactor\PracticeInteractor.cs" />
     <Compile Include="Practice\Support\PracticeAcceptanceTest.cs" />
     <Compile Include="Practice\About_practice_schedule.cs" />

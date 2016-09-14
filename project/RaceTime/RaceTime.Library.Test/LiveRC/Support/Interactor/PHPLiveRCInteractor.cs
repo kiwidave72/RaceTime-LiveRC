@@ -1,13 +1,15 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Security.Cryptography;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RaceTime.Library.Model;
 using ServiceStack;
 
 namespace RaceTime.Library.Test.LiveRC.Support.Interactor
 {
-    public class LiveRCInteractor
+    public class PHPLiveRCInteractor
     {
        
 
@@ -32,17 +34,60 @@ namespace RaceTime.Library.Test.LiveRC.Support.Interactor
         }
 
 
-        public DriverPositionData Parse(string data)
+        public List<DriverData> Parse(string data)
         {
             var json = data.Remove(0, 4);
-            var stuff = json.FromJson<DriverData>();
 
-            return stuff.args[0].FromJson<DriverPositionData>();
+            var liveRcDriverData = json.FromJson<LiveRcDriverData>();
+
+            var singlePacket = liveRcDriverData.args[0].FromJson<DriverPositionData>();
+
+            var LiveRCPositionDataParser = Interactor.LiveRCPositionDataParser.Parse(singlePacket);
+
+
+            return LiveRCPositionDataParser;
 
         }
     }
 
-    public class DriverData
+    public static class LiveRCPositionDataParser
+    {
+        public static List<DriverData> Parse(DriverPositionData data)
+        {
+
+            var result = new List<DriverData>();
+
+            ParseSingleDriver(data.p1, result);
+            ParseSingleDriver(data.p2, result);
+            ParseSingleDriver(data.p3, result);
+            ParseSingleDriver(data.p4, result);
+            ParseSingleDriver(data.p5, result);
+            ParseSingleDriver(data.p6, result);
+            ParseSingleDriver(data.p7, result);
+            ParseSingleDriver(data.p8, result);
+            ParseSingleDriver(data.p9, result);
+            ParseSingleDriver(data.p10, result);
+
+            return result;
+        }
+
+        private static void ParseSingleDriver(string data, List<DriverData> result)
+        {
+            if (!string.IsNullOrEmpty(data ))
+            {
+                var dataArray = data.Split('|');
+                var item = new DriverData();
+
+                item.Position = dataArray[0];
+
+                item.Name = dataArray[1];
+
+                result.Add(item);
+            }
+        }
+    }
+
+    public class LiveRcDriverData
     {
 
         public string name { get; set; }
@@ -63,6 +108,14 @@ namespace RaceTime.Library.Test.LiveRC.Support.Interactor
         public string p10 { get; set; }
     }
 
+    public class DriverData
+    {
+        public string Name { get; set; }
+        public string Position { get; set; }
+
+    }
+
+
     public class argsValues
     {
         public string values { get; set; }
@@ -73,8 +126,13 @@ namespace RaceTime.Library.Test.LiveRC.Support.Interactor
     {
 
         public Local[] local { get; set; }
-        public Local[] premium { get; set; }
+        public Premium[] premium { get; set; }
         
+    }
+
+    public class Premium
+    {
+        public Local __invalid_type__269 { get; set; }
     }
 
     public class Local
